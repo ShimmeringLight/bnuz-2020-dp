@@ -1,4 +1,4 @@
-package com.shimmeringlight.dp.main.log;
+package com.shimmeringlight.dp.log;
 
 public interface Log
 {

@@ -1,4 +1,4 @@
-package com.shimmeringlight.dp.main.config;
+package com.shimmeringlight.dp.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class LoadedProperties
         FileInputStream fis = null;
         try
         {
-            fis = new FileInputStream("./application.properties");
+            fis = new FileInputStream("src/main/resources/application.properties");
             properties.load(fis);
         } catch (IOException e)
         {

@@ -1,6 +1,6 @@
-package com.shimmeringlight.dp.main.log;
+package com.shimmeringlight.dp.log;
 
-import com.shimmeringlight.dp.main.utils.ProxyFactory;
+import com.shimmeringlight.dp.utils.ProxyFactory;
 
 public class LogFactory
 {

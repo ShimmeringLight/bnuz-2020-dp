@@ -1,4 +1,4 @@
-package com.shimmeringlight.dp.main.log;
+package com.shimmeringlight.dp.log;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

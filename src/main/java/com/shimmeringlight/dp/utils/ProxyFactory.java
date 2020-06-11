@@ -1,4 +1,4 @@
-package com.shimmeringlight.dp.main.utils;
+package com.shimmeringlight.dp.utils;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
