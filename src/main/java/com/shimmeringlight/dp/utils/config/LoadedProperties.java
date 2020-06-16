@@ -1,4 +1,4 @@
-package com.shimmeringlight.dp.config;
+package com.shimmeringlight.dp.utils.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;

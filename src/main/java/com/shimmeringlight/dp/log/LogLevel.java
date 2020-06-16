@@ -1,7 +1,7 @@
 package com.shimmeringlight.dp.log;
 
 
-import com.shimmeringlight.dp.config.LoadedProperties;
+import com.shimmeringlight.dp.utils.config.LoadedProperties;
 
 public enum LogLevel
 {

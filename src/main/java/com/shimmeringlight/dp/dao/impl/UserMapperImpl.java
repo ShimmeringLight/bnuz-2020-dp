@@ -1,6 +1,7 @@
 package com.shimmeringlight.dp.dao.impl;
 
-import com.shimmeringlight.dp.config.LoadedProperties;
+import com.shimmeringlight.dp.utils.annotations.Login;
+import com.shimmeringlight.dp.utils.config.LoadedProperties;
 import com.shimmeringlight.dp.dao.UserMapper;
 import com.shimmeringlight.dp.entity.User;
 import com.shimmeringlight.dp.log.Log;
@@ -10,6 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Login(value = false)
 public class UserMapperImpl implements UserMapper
 {
     final String JDBC_DRIVER;
@@ -26,21 +28,33 @@ public class UserMapperImpl implements UserMapper
 
     Log log = LogFactory.build();
 
-    public void insert(String userName, String password) throws SQLException
+    public void insert(String userName, String password)
     {
-        statement.executeQuery("use dp");
-        String sql = "insert into user (userName,password) values ('" + userName + "','" +
-                password + "')";
-        log.info("SQL: " + sql);
-        statement.executeUpdate(sql);
+        try
+        {
+            statement.executeQuery("use dp");
+            String sql = "insert into user (userName,password) values ('" + userName + "','" +
+                    password + "')";
+            log.info("SQL: " + sql);
+            statement.executeUpdate(sql);
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
     }
 
-    public void deleteByUserName(String userName) throws SQLException
+    public void deleteByUserName(String userName)
     {
-        statement.executeQuery("use dp");
-        String sql = "delete from user where userName = '" + userName + "'";
-        log.info("SQL: " + sql);
-        statement.executeUpdate(sql);
+        try
+        {
+            statement.executeQuery("use dp");
+            String sql = "delete from user where userName = '" + userName + "'";
+            log.info("SQL: " + sql);
+            statement.executeUpdate(sql);
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -78,16 +92,23 @@ public class UserMapperImpl implements UserMapper
     }
 
     @Override
-    public User findByUserName(String userName) throws SQLException
+    public User findByUserName(String userName)
     {
-        statement.executeQuery("use dp");
-        String sql = "select * from dp.User where userName = '" + userName + "'";
-        log.info("SQL: " + sql);
-        ResultSet resultSet = statement.executeQuery(sql);
-        resultSet.next();
-        return new User(resultSet.getInt("userId"),
-                resultSet.getString("userName"),
-                resultSet.getString("password"));
+        try
+        {
+            statement.executeQuery("use dp");
+            String sql = "select * from dp.User where userName = '" + userName + "'";
+            log.info("SQL: " + sql);
+            ResultSet resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            return new User(resultSet.getInt("userId"),
+                    resultSet.getString("userName"),
+                    resultSet.getString("password"));
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     public List<User> findAll() throws SQLException
@@ -119,7 +140,7 @@ public class UserMapperImpl implements UserMapper
         statement = connection.createStatement();
     }
 
-    public UserMapperImpl() throws Exception
+    public UserMapperImpl()
     {
         this.JDBC_DRIVER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.driver");
         this.DB_URL = LoadedProperties.getInstance().getProperties().getProperty("jdbc.url");
@@ -127,8 +148,20 @@ public class UserMapperImpl implements UserMapper
         this.PASSWORD = LoadedProperties.getInstance().getProperties().getProperty("jdbc.password");
         log.info("Loading Driver");
         log.info("Connecting to database");
-        connection = DriverManager.getConnection(DB_URL,USER,PASSWORD);
+        try
+        {
+            connection = DriverManager.getConnection(DB_URL,USER,PASSWORD);
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
         log.info("Creating statement");
-        statement = connection.createStatement();
+        try
+        {
+            statement = connection.createStatement();
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
     }
 }
