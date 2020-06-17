@@ -10,7 +10,7 @@ public class DaoFactoryImpl implements DaoFactory
     @Override
     public UserMapper buildUserMapper()
     {
-        UserMapper userMapper = new UserMapperImpl();
+        UserMapper userMapper = UserMapperImpl.getInstance();
         return (UserMapper) ProxyFactory.build(userMapper,new DaoInvocationHandler(userMapper));
     }
 

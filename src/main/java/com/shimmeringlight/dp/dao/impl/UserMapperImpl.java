@@ -1,5 +1,6 @@
 package com.shimmeringlight.dp.dao.impl;
 
+import com.shimmeringlight.dp.dao.impl.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.utils.annotations.Login;
 import com.shimmeringlight.dp.utils.config.LoadedProperties;
 import com.shimmeringlight.dp.dao.UserMapper;
@@ -27,6 +28,16 @@ public class UserMapperImpl implements UserMapper
     Statement statement;
 
     Log log = LogFactory.build();
+
+    private static class Instance
+    {
+        public static final UserMapperImpl instance = new UserMapperImpl();
+    }
+
+    public static UserMapperImpl getInstance()
+    {
+        return UserMapperImpl.Instance.instance;
+    }
 
     public void insert(String userName, String password)
     {
@@ -126,28 +137,15 @@ public class UserMapperImpl implements UserMapper
         return users;
     }
 
-    public UserMapperImpl(String JDBC_DRIVER, String DB_URL, String USER, String PASSWORD) throws Exception
+    private UserMapperImpl()
     {
-        this.JDBC_DRIVER = JDBC_DRIVER;
-        this.DB_URL = DB_URL;
-        this.USER = USER;
-        this.PASSWORD = PASSWORD;
-        log.info("Loading Driver");
-        Class.forName(JDBC_DRIVER);
-        log.info("Connecting to database");
-        connection = DriverManager.getConnection(DB_URL);
-        log.info("Creating statement");
-        statement = connection.createStatement();
-    }
-
-    public UserMapperImpl()
-    {
+        log.debug("Loading UserMapper");
         this.JDBC_DRIVER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.driver");
         this.DB_URL = LoadedProperties.getInstance().getProperties().getProperty("jdbc.url");
         this.USER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.user");
         this.PASSWORD = LoadedProperties.getInstance().getProperties().getProperty("jdbc.password");
-        log.info("Loading Driver");
-        log.info("Connecting to database");
+        log.debug("Loading Driver");
+        log.debug("Connecting to database");
         try
         {
             connection = DriverManager.getConnection(DB_URL,USER,PASSWORD);

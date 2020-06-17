@@ -17,7 +17,6 @@ public class DaoInvocationHandler implements InvocationHandler
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
     {
-        log.debug("proxy: " + target);
         if(!target.getClass().getAnnotation(Login.class).value())
             return method.invoke(target,args);
         if(!LoginRetention.isLogin())
@@ -31,6 +30,5 @@ public class DaoInvocationHandler implements InvocationHandler
     public DaoInvocationHandler(Object target)
     {
         this.target = target;
-        log.debug("proxy target: " + target);
     }
 }

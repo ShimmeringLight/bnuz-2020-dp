@@ -10,7 +10,7 @@ public class UserTest
     @Test
     public void test() throws Exception
     {
-        UserMapper userMapper = new UserMapperImpl();
+        UserMapper userMapper = UserMapperImpl.getInstance();
         userMapper.insert("Test","password");
         userMapper.insert("Test2","password2");
         List<User> users = userMapper.findAll();
