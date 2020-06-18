@@ -1,7 +1,9 @@
-package com.shimmeringlight.dp.dao.impl.factory;
+package com.shimmeringlight.dp.dao.factory;
 
 import com.shimmeringlight.dp.dao.DaoInvocationHandler;
+import com.shimmeringlight.dp.dao.GoodsMapper;
 import com.shimmeringlight.dp.dao.UserMapper;
+import com.shimmeringlight.dp.dao.impl.GoodsMapperImpl;
 import com.shimmeringlight.dp.dao.impl.UserMapperImpl;
 import com.shimmeringlight.dp.utils.ProxyFactory;
 
@@ -12,6 +14,13 @@ public class DaoFactoryImpl implements DaoFactory
     {
         UserMapper userMapper = UserMapperImpl.getInstance();
         return (UserMapper) ProxyFactory.build(userMapper,new DaoInvocationHandler(userMapper));
+    }
+
+    @Override
+    public GoodsMapper buildGoodsMapper()
+    {
+        GoodsMapper goodsMapper = GoodsMapperImpl.getInstance();
+        return (GoodsMapper) ProxyFactory.build(goodsMapper,new DaoInvocationHandler(goodsMapper));
     }
 
     private DaoFactoryImpl()

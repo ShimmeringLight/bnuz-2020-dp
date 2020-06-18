@@ -16,6 +16,5 @@ public class LoginRetention
 
     private LoginRetention()
     {
-
     }
 }

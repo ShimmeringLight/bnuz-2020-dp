@@ -1,6 +1,6 @@
 package com.shimmeringlight.dp.dao.impl;
 
-import com.shimmeringlight.dp.dao.impl.factory.DaoFactoryImpl;
+import com.shimmeringlight.dp.utils.Utils;
 import com.shimmeringlight.dp.utils.annotations.Login;
 import com.shimmeringlight.dp.utils.config.LoadedProperties;
 import com.shimmeringlight.dp.dao.UserMapper;
@@ -12,6 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//单例
 @Login(value = false)
 public class UserMapperImpl implements UserMapper
 {
@@ -46,7 +47,7 @@ public class UserMapperImpl implements UserMapper
             statement.executeQuery("use dp");
             String sql = "insert into user (userName,password) values ('" + userName + "','" +
                     password + "')";
-            log.info("SQL: " + sql);
+            Utils.logSQL(sql);
             statement.executeUpdate(sql);
         } catch (SQLException throwables)
         {
@@ -60,7 +61,7 @@ public class UserMapperImpl implements UserMapper
         {
             statement.executeQuery("use dp");
             String sql = "delete from user where userName = '" + userName + "'";
-            log.info("SQL: " + sql);
+            Utils.logSQL(sql);
             statement.executeUpdate(sql);
         } catch (SQLException throwables)
         {
@@ -73,7 +74,7 @@ public class UserMapperImpl implements UserMapper
     {
         statement.executeQuery("use dp");
         String sql = "delete from user where userId = " + id;
-        log.info("SQL: " + sql);
+        Utils.logSQL(sql);
         statement.executeUpdate(sql);
     }
 
@@ -82,7 +83,7 @@ public class UserMapperImpl implements UserMapper
         String sql = "update user set userName = '" + user.getUserName()
                 + "',password = '" + user.getPassword()
                 + "' where userId =" + user.getUserId();
-        log.info("SQL: " + sql);
+        Utils.logSQL(sql);
         statement.executeUpdate(sql);
     }
 
@@ -90,7 +91,7 @@ public class UserMapperImpl implements UserMapper
     {
         statement.executeQuery("use dp");
         String sql = "select * from User where dp.User.userId = " + id;
-        log.info("SQL: " + sql);
+        Utils.logSQL(sql);
         ResultSet resultSet = statement.executeQuery(sql);
         User user = new User();
         while (resultSet.next())
@@ -109,7 +110,7 @@ public class UserMapperImpl implements UserMapper
         {
             statement.executeQuery("use dp");
             String sql = "select * from dp.User where userName = '" + userName + "'";
-            log.info("SQL: " + sql);
+            Utils.logSQL(sql);
             ResultSet resultSet = statement.executeQuery(sql);
             resultSet.next();
             return new User(resultSet.getInt("userId"),
@@ -125,6 +126,7 @@ public class UserMapperImpl implements UserMapper
     public List<User> findAll() throws SQLException
     {
         String sql = "select * from User";
+        Utils.logSQL(sql);
         ResultSet resultSet = statement.executeQuery(sql);
         ArrayList<User> users = new ArrayList<>();
         while (resultSet.next())

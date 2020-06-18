@@ -1,6 +1,6 @@
 import com.shimmeringlight.dp.dao.UserMapper;
-import com.shimmeringlight.dp.dao.impl.factory.DaoFactory;
-import com.shimmeringlight.dp.dao.impl.factory.DaoFactoryImpl;
+import com.shimmeringlight.dp.dao.factory.DaoFactory;
+import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
 import com.shimmeringlight.dp.service.login.LoginService;

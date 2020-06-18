@@ -29,12 +29,14 @@ create table Goods
    discount             int,
    weight               int,
    inventory            int,
+   goodsName            varchar(20) unique,
    primary key (goodsId)
 );
 
 /*==============================================================*/
 /* Table: GoodsList                                             */
 /*==============================================================*/
+# 订单商品列表
 create table GoodsList
 (
    goodsListId          int not null auto_increment,
@@ -47,6 +49,7 @@ create table GoodsList
 /*==============================================================*/
 /* Table: "Order"                                               */
 /*==============================================================*/
+# 订单表
 create table Orders
 (
    orderId              int not null auto_increment,
@@ -63,7 +66,7 @@ create table Orders
 create table User
 (
    userId               int not null auto_increment,
-   userName             varchar(20),
+   userName             varchar(20) unique ,
    password             varchar(20),
    primary key (userId)
 );
