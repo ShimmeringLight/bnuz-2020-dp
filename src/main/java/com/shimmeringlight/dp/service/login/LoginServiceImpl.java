@@ -14,10 +14,10 @@ public class LoginServiceImpl implements LoginService
     @Override
     public boolean login(String userName, String password)
     {
-        if(LoginRetention.isLogin())
+        if (LoginRetention.isLogin())
             return true;
         User user = userMapper.findByUserName(userName);
-        if(user.getPassword().equals(password))
+        if (user.getPassword().equals(password))
         {
             LoginRetention.setIsLogin(true);
             return true;

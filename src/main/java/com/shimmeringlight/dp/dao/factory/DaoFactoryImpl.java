@@ -13,14 +13,14 @@ public class DaoFactoryImpl implements DaoFactory
     public UserMapper buildUserMapper()
     {
         UserMapper userMapper = UserMapperImpl.getInstance();
-        return (UserMapper) ProxyFactory.build(userMapper,new DaoInvocationHandler(userMapper));
+        return (UserMapper) ProxyFactory.build(userMapper, new DaoInvocationHandler(userMapper));
     }
 
     @Override
     public GoodsMapper buildGoodsMapper()
     {
         GoodsMapper goodsMapper = GoodsMapperImpl.getInstance();
-        return (GoodsMapper) ProxyFactory.build(goodsMapper,new DaoInvocationHandler(goodsMapper));
+        return (GoodsMapper) ProxyFactory.build(goodsMapper, new DaoInvocationHandler(goodsMapper));
     }
 
     private DaoFactoryImpl()

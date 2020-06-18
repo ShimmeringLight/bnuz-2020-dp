@@ -1,12 +1,12 @@
 package com.shimmeringlight.dp.dao.impl;
 
-import com.shimmeringlight.dp.utils.Utils;
-import com.shimmeringlight.dp.utils.annotations.Login;
-import com.shimmeringlight.dp.utils.config.LoadedProperties;
 import com.shimmeringlight.dp.dao.UserMapper;
 import com.shimmeringlight.dp.entity.User;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
+import com.shimmeringlight.dp.utils.Utils;
+import com.shimmeringlight.dp.utils.annotations.Login;
+import com.shimmeringlight.dp.utils.config.LoadedProperties;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -150,7 +150,7 @@ public class UserMapperImpl implements UserMapper
         log.debug("Connecting to database");
         try
         {
-            connection = DriverManager.getConnection(DB_URL,USER,PASSWORD);
+            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();

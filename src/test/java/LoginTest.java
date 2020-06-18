@@ -26,9 +26,9 @@ public class LoginTest
     public void test()
     {
         log.debug("UserMapper : " + userMapper);
-        userMapper.insert("login","123456");
+        userMapper.insert("login", "123456");
         LoginService loginService = new LoginServiceImpl();
-        loginService.login("login","123456");
+        loginService.login("login", "123456");
     }
 
     @After

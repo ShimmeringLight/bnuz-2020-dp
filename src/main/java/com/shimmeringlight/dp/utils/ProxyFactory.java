@@ -5,8 +5,8 @@ import java.lang.reflect.Proxy;
 
 public class ProxyFactory
 {
-    public static Object build(Object target,InvocationHandler handler)
+    public static Object build(Object target, InvocationHandler handler)
     {
-        return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(),handler);
+        return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), handler);
     }
 }

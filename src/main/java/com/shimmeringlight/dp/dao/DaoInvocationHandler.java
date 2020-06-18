@@ -17,14 +17,14 @@ public class DaoInvocationHandler implements InvocationHandler
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
     {
-        if(!target.getClass().getAnnotation(Login.class).value())
-            return method.invoke(target,args);
-        if(!LoginRetention.isLogin())
+        if (!target.getClass().getAnnotation(Login.class).value())
+            return method.invoke(target, args);
+        if (!LoginRetention.isLogin())
         {
             log.info("请登录后再执行操作");
             return null;
         }
-        return method.invoke(target,args);
+        return method.invoke(target, args);
     }
 
     public DaoInvocationHandler(Object target)

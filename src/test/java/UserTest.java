@@ -11,15 +11,15 @@ public class UserTest
     public void test() throws Exception
     {
         UserMapper userMapper = UserMapperImpl.getInstance();
-        userMapper.insert("Test","password");
-        userMapper.insert("Test2","password2");
+        userMapper.insert("Test", "password");
+        userMapper.insert("Test2", "password2");
         List<User> users = userMapper.findAll();
         assert users.size() > 0;
         User user = users.get(0);
         user.setUserName("Changed");
         userMapper.updateByEntity(user);
         User find = userMapper.findByUserName("Changed");
-        for(User e: users)
+        for (User e : users)
             userMapper.deleteById(e.getUserId());
     }
 }

@@ -42,17 +42,17 @@ public class LogEntity implements Log
 
     public LogEntity info(String msg)
     {
-        return new LogEntity(LogLevel.INFO,msg);
+        return new LogEntity(LogLevel.INFO, msg);
     }
 
     public LogEntity debug(String msg)
     {
-        return new LogEntity(LogLevel.DEBUG,msg);
+        return new LogEntity(LogLevel.DEBUG, msg);
     }
 
     public LogEntity error(String msg)
     {
-        return new LogEntity(LogLevel.ERROR,msg);
+        return new LogEntity(LogLevel.ERROR, msg);
     }
 
     public String getContent()

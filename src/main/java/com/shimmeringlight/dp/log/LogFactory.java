@@ -8,6 +8,6 @@ public class LogFactory
     {
         Log log = new LogEntity();
         LogFitter fitter = new LogFitter(log);
-        return (Log) ProxyFactory.build(log,fitter);
+        return (Log) ProxyFactory.build(log, fitter);
     }
 }

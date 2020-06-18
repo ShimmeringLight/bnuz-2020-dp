@@ -49,7 +49,7 @@ public class GoodsMapperImpl implements GoodsMapper
                 goods.setGoodsName(resultSet.getString("goodsName"));
                 goodsList.add(goods);
             }
-        }catch (SQLException e)
+        } catch (SQLException e)
         {
             e.printStackTrace();
         }
@@ -185,7 +185,7 @@ public class GoodsMapperImpl implements GoodsMapper
         log.debug("Connecting to database");
         try
         {
-            connection = DriverManager.getConnection(DB_URL,USER,PASSWORD);
+            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();
