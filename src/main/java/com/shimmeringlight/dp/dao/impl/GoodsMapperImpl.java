@@ -33,13 +33,12 @@ public class GoodsMapperImpl implements GoodsMapper
     public static List<Goods> extract(ResultSet resultSet)
     {
         ArrayList<Goods> goodsList = new ArrayList<>();
+        int count = 0;
         try
         {
-            resultSet.last();
-            log.info("Found: " + resultSet.getRow());
-            resultSet.beforeFirst();
             while (resultSet.next())
             {
+                count++;
                 Goods goods = new Goods();
                 goods.setGoodId(resultSet.getInt("goodsId"));
                 goods.setOriPrice(resultSet.getInt("oriPrice"));
@@ -53,6 +52,7 @@ public class GoodsMapperImpl implements GoodsMapper
         {
             e.printStackTrace();
         }
+        log.debug("Find: " + count);
         return goodsList;
     }
 
@@ -137,7 +137,7 @@ public class GoodsMapperImpl implements GoodsMapper
     @Override
     public Goods findByName(String name)
     {
-        String sql = "select * from Goods where goodsName = " + name;
+        String sql = "select * from Goods where goodsName = '" + name + "'";
         Utils.logSQL(sql);
         try
         {
