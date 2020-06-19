@@ -10,8 +10,6 @@ public interface GoodsListMapper
 
     void deleteById(int id);
 
-    void trim();
-
     void updateByEntity(GoodsList goodsList);
 
     GoodsList findById(int id);

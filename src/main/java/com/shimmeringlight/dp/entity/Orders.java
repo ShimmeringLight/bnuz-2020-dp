@@ -1,5 +1,8 @@
 package com.shimmeringlight.dp.entity;
 
+import com.shimmeringlight.dp.utils.annotations.Login;
+
+@Login
 public class Orders
 {
     private int orderId;
@@ -10,18 +13,19 @@ public class Orders
 
     private int weight;
 
-    private int goodsListId;
-
-    public Orders(int orderPrice, int num, int weight, int goodsListId)
-    {
-        this.orderPrice = orderPrice;
-        this.num = num;
-        this.weight = weight;
-        this.goodsListId = goodsListId;
-    }
-
     public Orders()
     {
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Orders{" +
+                "orderId=" + orderId +
+                ", orderPrice=" + orderPrice +
+                ", num=" + num +
+                ", weight=" + weight +
+                '}';
     }
 
     public int getOrderId()
@@ -62,15 +66,5 @@ public class Orders
     public void setWeight(int weight)
     {
         this.weight = weight;
-    }
-
-    public int getGoodsListId()
-    {
-        return goodsListId;
-    }
-
-    public void setGoodsListId(int goodsListId)
-    {
-        this.goodsListId = goodsListId;
     }
 }

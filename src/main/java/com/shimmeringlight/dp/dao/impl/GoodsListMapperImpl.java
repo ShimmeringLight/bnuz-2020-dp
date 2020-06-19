@@ -31,6 +31,7 @@ public class GoodsListMapperImpl implements GoodsListMapper
                 count++;
                 GoodsList goodsList = new GoodsList();
                 goodsList.setGoodsListId(resultSet.getInt("goodsListId"));
+                goodsList.setOrderId(resultSet.getInt("orderId"));
                 goodsList.setGoodsId(resultSet.getInt("goodsId"));
                 goodsList.setGoodsAmount(resultSet.getInt("goodsAmount"));
                 goodsList.setFinalPrice(resultSet.getInt("finalPrice"));
@@ -48,8 +49,9 @@ public class GoodsListMapperImpl implements GoodsListMapper
     @Override
     public void insertByEntity(GoodsList goodsList)
     {
-        String sql = "insert into GoodsList (goodsId, goodsAmount, finalPrice) VALUES ("
+        String sql = "insert into GoodsList (goodsId, orderId,goodsAmount, finalPrice) VALUES ("
                 + goodsList.getGoodsId() + ","
+                + goodsList.getOrderId() + ","
                 + goodsList.getGoodsAmount() + ","
                 + goodsList.getFinalPrice() + ")";
         Utils.logSQL(sql);
@@ -77,24 +79,11 @@ public class GoodsListMapperImpl implements GoodsListMapper
     }
 
     @Override
-    public void trim()
-    {
-        String sql = "delete from GoodsList where goodsListId not in (select goodsListId from Orders)";
-        Utils.logSQL(sql);
-        try
-        {
-            statement.executeUpdate(sql);
-        } catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void updateByEntity(GoodsList goodsList)
     {
         String sql = "update GoodsList set"
                 + " goodsId = " + goodsList.getGoodsId()
+                + ",orderId = " + goodsList.getOrderId()
                 + ",goodsAmount = " + goodsList.getGoodsAmount()
                 + ",finalPrice = " + goodsList.getFinalPrice()
                 + " where goodsListId = " + goodsList.getGoodsListId();
@@ -130,6 +119,7 @@ public class GoodsListMapperImpl implements GoodsListMapper
     {
         String sql = "select * from GoodsList where "
                 + "goodsId = " + goodsList.getGoodsId()
+                + " and orderId = " + goodsList.getOrderId()
                 + " and goodsAmount = " + goodsList.getGoodsAmount()
                 + " and finalPrice = " + goodsList.getFinalPrice();
         try

@@ -8,8 +8,6 @@ create database dp;
 
 use dp;
 
-drop table if exists Discount;
-
 drop table if exists Goods;
 
 drop table if exists GoodsList;
@@ -40,6 +38,7 @@ create table Goods
 create table GoodsList
 (
     goodsListId int not null auto_increment,
+    orderId     int,
     goodsId     int,
     goodsAmount int,
     finalPrice  int,
@@ -56,7 +55,6 @@ create table Orders
     orderPrice  int,
     num         int,
     weight      int,
-    goodsListId int,
     primary key (orderId)
 );
 
@@ -75,7 +73,8 @@ alter table GoodsList
     add constraint FK_Reference_2 foreign key (goodsId)
         references Goods (goodsId) on delete restrict on update restrict;
 
-alter table Orders
-    add constraint FK_Reference_3 foreign key (goodsListId)
-        references GoodsList (goodsListId) on delete restrict on update restrict;
+alter table GoodsList
+    add constraint FK_Reference_4 foreign key (orderId)
+        references Orders(orderId) on delete restrict on update restrict;
 
+insert into User (userName, password) VALUES ('root','123456');

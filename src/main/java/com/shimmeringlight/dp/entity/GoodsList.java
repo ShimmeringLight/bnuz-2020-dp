@@ -4,18 +4,13 @@ public class GoodsList
 {
     private int goodsListId;
 
+    private int orderId;
+
     private int goodsId;
 
     private int goodsAmount;
 
     private int finalPrice;
-
-    public GoodsList(int goodsId, int goodsAmount, int finalPrice)
-    {
-        this.goodsId = goodsId;
-        this.goodsAmount = goodsAmount;
-        this.finalPrice = finalPrice;
-    }
 
     public GoodsList()
     {
@@ -26,6 +21,7 @@ public class GoodsList
     {
         return "GoodsList{" +
                 "goodsListId=" + goodsListId +
+                ", orderId=" + orderId +
                 ", goodsId=" + goodsId +
                 ", goodsAmount=" + goodsAmount +
                 ", finalPrice=" + finalPrice +
@@ -40,6 +36,16 @@ public class GoodsList
     public void setGoodsListId(int goodsListId)
     {
         this.goodsListId = goodsListId;
+    }
+
+    public int getOrderId()
+    {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId)
+    {
+        this.orderId = orderId;
     }
 
     public int getGoodsId()

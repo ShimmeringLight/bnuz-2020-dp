@@ -1,12 +1,15 @@
 import com.shimmeringlight.dp.dao.GoodsListMapper;
 import com.shimmeringlight.dp.dao.GoodsMapper;
+import com.shimmeringlight.dp.dao.OrdersMapper;
 import com.shimmeringlight.dp.dao.UserMapper;
 import com.shimmeringlight.dp.dao.factory.DaoFactory;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.entity.GoodsList;
+import com.shimmeringlight.dp.entity.Orders;
 import com.shimmeringlight.dp.service.login.LoginService;
 import com.shimmeringlight.dp.service.login.LoginServiceImpl;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,11 +21,12 @@ public class GoodsListTest
 
     LoginService loginService = LoginServiceImpl.getInstance();
 
+    OrdersMapper ordersMapper = DaoFactoryImpl.getInstance().buildOrdersMapper();
+
     @Before
     public void before()
     {
         loginService.login("root","123456");
-        goodsListMapper.trim();
         Goods goods = new Goods();
         goods.setGoodsName("Test");
         goods.setInventory(100);
@@ -30,13 +34,22 @@ public class GoodsListTest
         goods.setDiscount(80);
         goods.setOriPrice(100);
         goodsMapper.insertByEntity(goods);
+
+        Orders orders = new Orders();
+        orders.setOrderPrice(100);
+        orders.setWeight(1);
+        orders.setNum(10);
+        ordersMapper.insertByEntity(orders);
+        assert !ordersMapper.findAll().isEmpty();
+
         goods = goodsMapper.findByName("Test");
         GoodsList goodsList = new GoodsList();
         goodsList.setFinalPrice(80);
+        goodsList.setOrderId(ordersMapper.findAll().get(0).getOrderId());
         goodsList.setGoodsAmount(1);
         goodsList.setGoodsId(goods.getGoodId());
         goodsListMapper.insertByEntity(goodsList);
-        assert goodsListMapper.findAll().size() > 0;
+        assert !goodsListMapper.findAll().isEmpty();
     }
 
     @Test
@@ -48,10 +61,16 @@ public class GoodsListTest
         assert goodsListMapper.findByEntity(goodsList).getFinalPrice() == 75;
     }
 
-    @Test
+    @After
     public void after()
     {
         for(GoodsList goodsList: goodsListMapper.findAll())
             goodsListMapper.deleteById(goodsList.getGoodsListId());
+
+        for(Goods goods:goodsMapper.findAll())
+            goodsMapper.deleteById(goods.getGoodId());
+
+        for(Orders orders:ordersMapper.findAll())
+            ordersMapper.deleteById(orders.getOrderId());
     }
 }
