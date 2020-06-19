@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GoodsMapper
 {
-    void insert(Goods goods);
+    void insertByEntity(Goods goods);
 
     void deleteById(int id);
 

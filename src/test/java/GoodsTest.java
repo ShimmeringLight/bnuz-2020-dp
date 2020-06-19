@@ -1,6 +1,4 @@
 import com.shimmeringlight.dp.dao.GoodsMapper;
-import com.shimmeringlight.dp.dao.UserMapper;
-import com.shimmeringlight.dp.dao.factory.DaoFactory;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.log.Log;
@@ -11,7 +9,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.annotation.Target;
 import java.util.List;
 
 public class GoodsTest
@@ -27,7 +24,7 @@ public class GoodsTest
     {
         loginService.login("root","123456");
         Goods goods = new Goods(100,90,10,100,"Test");
-        goodsMapper.insert(goods);
+        goodsMapper.insertByEntity(goods);
     }
 
     @Test

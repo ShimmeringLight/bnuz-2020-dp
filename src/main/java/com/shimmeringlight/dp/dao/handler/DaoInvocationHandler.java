@@ -1,4 +1,4 @@
-package com.shimmeringlight.dp.dao;
+package com.shimmeringlight.dp.dao.handler;
 
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;

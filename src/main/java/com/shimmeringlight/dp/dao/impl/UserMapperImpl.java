@@ -16,16 +16,6 @@ import java.util.List;
 @Login(value = false)
 public class UserMapperImpl implements UserMapper
 {
-    final String JDBC_DRIVER;
-
-    final String DB_URL;
-
-    final String USER;
-
-    final String PASSWORD;
-
-    Connection connection;
-
     Statement statement;
 
     Log log = LogFactory.build();
@@ -142,10 +132,14 @@ public class UserMapperImpl implements UserMapper
     private UserMapperImpl()
     {
         log.debug("Loading UserMapper");
-        this.JDBC_DRIVER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.driver");
-        this.DB_URL = LoadedProperties.getInstance().getProperties().getProperty("jdbc.url");
-        this.USER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.user");
-        this.PASSWORD = LoadedProperties.getInstance().getProperties().getProperty("jdbc.password");
+        final String JDBC_DRIVER;
+        final String DB_URL;
+        final String USER;
+        final String PASSWORD;
+        Connection connection = null;
+        DB_URL = LoadedProperties.getInstance().getProperties().getProperty("jdbc.url");
+        USER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.user");
+        PASSWORD = LoadedProperties.getInstance().getProperties().getProperty("jdbc.password");
         log.debug("Loading Driver");
         log.debug("Connecting to database");
         try

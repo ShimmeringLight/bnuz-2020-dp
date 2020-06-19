@@ -16,16 +16,6 @@ import java.util.List;
 @Login
 public class GoodsMapperImpl implements GoodsMapper
 {
-    final String JDBC_DRIVER;
-
-    final String DB_URL;
-
-    final String USER;
-
-    final String PASSWORD;
-
-    Connection connection;
-
     Statement statement;
 
     static Log log = LogFactory.build();
@@ -57,7 +47,7 @@ public class GoodsMapperImpl implements GoodsMapper
     }
 
     @Override
-    public void insert(Goods goods)
+    public void insertByEntity(Goods goods)
     {
         String sql = "insert into Goods (oriPrice, discount, weight, inventory, goodsName) " +
                 "VALUES (" + goods.getOriPrice() + "," + goods.getDiscount() + "," + goods.getWeight() +
@@ -176,11 +166,18 @@ public class GoodsMapperImpl implements GoodsMapper
 
     private GoodsMapperImpl()
     {
-        log.debug("Loading UserMapper");
-        this.JDBC_DRIVER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.driver");
-        this.DB_URL = LoadedProperties.getInstance().getProperties().getProperty("jdbc.url");
-        this.USER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.user");
-        this.PASSWORD = LoadedProperties.getInstance().getProperties().getProperty("jdbc.password");
+        final String DB_URL;
+
+        final String USER;
+
+        final String PASSWORD;
+
+        Connection connection = null;
+
+        log.debug("Loading GoodsMapper");
+        DB_URL = LoadedProperties.getInstance().getProperties().getProperty("jdbc.url");
+        USER = LoadedProperties.getInstance().getProperties().getProperty("jdbc.user");
+        PASSWORD = LoadedProperties.getInstance().getProperties().getProperty("jdbc.password");
         log.debug("Loading Driver");
         log.debug("Connecting to database");
         try
