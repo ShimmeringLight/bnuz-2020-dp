@@ -7,12 +7,15 @@ import com.shimmeringlight.dp.log.LogFactory;
 import com.shimmeringlight.dp.utils.Utils;
 import com.shimmeringlight.dp.utils.annotations.Login;
 import com.shimmeringlight.dp.utils.config.LoadedProperties;
-import com.sun.tools.corba.se.idl.constExpr.Or;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @see com.shimmeringlight.dp.dao.OrdersMapper
+ * 订单数据访问层实现，为单例
+ */
 @Login
 public class OrdersMapperImpl implements OrdersMapper
 {
@@ -20,7 +23,12 @@ public class OrdersMapperImpl implements OrdersMapper
 
     private static final Log log = LogFactory.build();
 
-
+    /**
+     * 映射结果集与实体类
+     *
+     * @param resultSet 结果集
+     * @return 实体类List
+     */
     private static List<Orders> extract(ResultSet resultSet)
     {
         int count = 0;

@@ -1,17 +1,21 @@
 package com.shimmeringlight.dp.entity;
 
+/**
+ * 商品实体类
+ */
 public class Goods
 {
+    //商品id
     private int goodId;
     //原价
     private int oriPrice;
     //折扣，0-100
     private int discount;
-
+    //商品重量
     private int weight;
     //库存
     private int inventory;
-
+    //商品名
     private String goodsName;
 
     public Goods(int oriPrice, int discount, int weight, int inventory, String goodsName)
@@ -21,6 +25,19 @@ public class Goods
         this.weight = weight;
         this.inventory = inventory;
         this.goodsName = goodsName;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Goods{" +
+                "goodId=" + goodId +
+                ", oriPrice=" + oriPrice +
+                ", discount=" + discount +
+                ", weight=" + weight +
+                ", inventory=" + inventory +
+                ", goodsName='" + goodsName + '\'' +
+                '}';
     }
 
     public Goods()

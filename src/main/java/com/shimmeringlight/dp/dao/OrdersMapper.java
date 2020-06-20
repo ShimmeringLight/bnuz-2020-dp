@@ -4,6 +4,11 @@ import com.shimmeringlight.dp.entity.Orders;
 
 import java.util.List;
 
+/**
+ * 订单数据访问层接口
+ *
+ * @see com.shimmeringlight.dp.dao.UserMapper
+ */
 public interface OrdersMapper
 {
     void insertByEntity(Orders orders);

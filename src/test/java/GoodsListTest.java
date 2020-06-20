@@ -1,8 +1,6 @@
 import com.shimmeringlight.dp.dao.GoodsListMapper;
 import com.shimmeringlight.dp.dao.GoodsMapper;
 import com.shimmeringlight.dp.dao.OrdersMapper;
-import com.shimmeringlight.dp.dao.UserMapper;
-import com.shimmeringlight.dp.dao.factory.DaoFactory;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.entity.GoodsList;
@@ -26,7 +24,7 @@ public class GoodsListTest
     @Before
     public void before()
     {
-        loginService.login("root","123456");
+        loginService.login("root", "123456");
         Goods goods = new Goods();
         goods.setGoodsName("Test");
         goods.setInventory(100);
@@ -64,13 +62,13 @@ public class GoodsListTest
     @After
     public void after()
     {
-        for(GoodsList goodsList: goodsListMapper.findAll())
+        for (GoodsList goodsList : goodsListMapper.findAll())
             goodsListMapper.deleteById(goodsList.getGoodsListId());
 
-        for(Goods goods:goodsMapper.findAll())
+        for (Goods goods : goodsMapper.findAll())
             goodsMapper.deleteById(goods.getGoodId());
 
-        for(Orders orders:ordersMapper.findAll())
+        for (Orders orders : ordersMapper.findAll())
             ordersMapper.deleteById(orders.getOrderId());
     }
 }

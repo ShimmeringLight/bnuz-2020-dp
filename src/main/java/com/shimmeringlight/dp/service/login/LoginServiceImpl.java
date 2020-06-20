@@ -3,9 +3,11 @@ package com.shimmeringlight.dp.service.login;
 import com.shimmeringlight.dp.dao.UserMapper;
 import com.shimmeringlight.dp.dao.factory.DaoFactory;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
-import com.shimmeringlight.dp.dao.impl.GoodsMapperImpl;
 import com.shimmeringlight.dp.entity.User;
 
+/**
+ * 登录业务逻辑实现，为单例
+ */
 public class LoginServiceImpl implements LoginService
 {
     DaoFactory daoFactory = DaoFactoryImpl.getInstance();

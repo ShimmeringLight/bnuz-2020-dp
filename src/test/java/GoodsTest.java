@@ -22,8 +22,8 @@ public class GoodsTest
     @Before
     public void beforeTest()
     {
-        loginService.login("root","123456");
-        Goods goods = new Goods(100,90,10,100,"Test");
+        loginService.login("root", "123456");
+        Goods goods = new Goods(100, 90, 10, 100, "Test");
         goodsMapper.insertByEntity(goods);
     }
 
@@ -42,7 +42,7 @@ public class GoodsTest
     {
         List<Goods> goodsList = goodsMapper.findAll();
         assert goodsList.size() > 0;
-        for(Goods g:goodsList)
+        for (Goods g : goodsList)
             goodsMapper.deleteById(g.getGoodId());
     }
 }

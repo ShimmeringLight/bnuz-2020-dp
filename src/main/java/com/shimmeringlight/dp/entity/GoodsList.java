@@ -1,15 +1,19 @@
 package com.shimmeringlight.dp.entity;
 
+/**
+ * 订单商品列表实体类
+ */
 public class GoodsList
 {
+    //id
     private int goodsListId;
-
+    //订单id
     private int orderId;
-
+    //商品id
     private int goodsId;
-
+    //商品数量
     private int goodsAmount;
-
+    //订单中此条目的最终价格
     private int finalPrice;
 
     public GoodsList()

@@ -51,10 +51,10 @@ create table GoodsList
 # 订单表
 create table Orders
 (
-    orderId     int not null auto_increment,
-    orderPrice  int,
-    num         int,
-    weight      int,
+    orderId    int not null auto_increment,
+    orderPrice int,
+    num        int,
+    weight     int,
     primary key (orderId)
 );
 
@@ -75,6 +75,7 @@ alter table GoodsList
 
 alter table GoodsList
     add constraint FK_Reference_4 foreign key (orderId)
-        references Orders(orderId) on delete restrict on update restrict;
+        references Orders (orderId) on delete restrict on update restrict;
 
-insert into User (userName, password) VALUES ('root','123456');
+insert into User (userName, password)
+VALUES ('root', '123456');

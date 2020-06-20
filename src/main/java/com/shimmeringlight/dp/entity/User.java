@@ -1,5 +1,8 @@
 package com.shimmeringlight.dp.entity;
 
+/**
+ * 用户实体类
+ */
 public class User
 {
     private int userId;

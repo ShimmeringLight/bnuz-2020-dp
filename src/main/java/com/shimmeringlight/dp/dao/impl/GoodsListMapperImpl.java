@@ -12,6 +12,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @see com.shimmeringlight.dp.dao.GoodsListMapper
+ * 订单商品条目数据访问层实现类
+ */
 @Login
 public class GoodsListMapperImpl implements GoodsListMapper
 {
@@ -20,6 +24,12 @@ public class GoodsListMapperImpl implements GoodsListMapper
 
     Statement statement;
 
+    /**
+     * 映射结果集与实体类
+     *
+     * @param resultSet 结果集
+     * @return 实体类List
+     */
     public static List<GoodsList> extract(ResultSet resultSet)
     {
         int count = 0;

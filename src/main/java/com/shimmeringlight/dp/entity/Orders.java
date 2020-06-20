@@ -1,16 +1,17 @@
 package com.shimmeringlight.dp.entity;
 
-import com.shimmeringlight.dp.utils.annotations.Login;
-
-@Login
+/**
+ * 订单实体类
+ */
 public class Orders
 {
+    //id
     private int orderId;
-
+    //订单总价
     private int orderPrice;
-
+    //商品总数
     private int num;
-
+    //总重量
     private int weight;
 
     public Orders()

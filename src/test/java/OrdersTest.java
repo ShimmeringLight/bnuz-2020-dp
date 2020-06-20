@@ -5,7 +5,6 @@ import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
 import com.shimmeringlight.dp.service.login.LoginService;
 import com.shimmeringlight.dp.service.login.LoginServiceImpl;
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +20,7 @@ public class OrdersTest
     @Before
     public void beforeTest()
     {
-        loginService.login("root","123456");
+        loginService.login("root", "123456");
         Orders orders = new Orders();
         orders.setOrderPrice(100);
         orders.setWeight(1);
@@ -42,7 +41,7 @@ public class OrdersTest
     @After
     public void after()
     {
-        for(Orders orders: ordersMapper.findAll())
+        for (Orders orders : ordersMapper.findAll())
             ordersMapper.deleteById(orders.getOrderId());
     }
 }

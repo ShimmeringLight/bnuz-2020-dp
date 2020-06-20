@@ -12,7 +12,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//单例
+/**
+ * @see com.shimmeringlight.dp.dao.GoodsMapper
+ * 商品数据访问层实现，为单例
+ */
 @Login
 public class GoodsMapperImpl implements GoodsMapper
 {
@@ -20,6 +23,12 @@ public class GoodsMapperImpl implements GoodsMapper
 
     static Log log = LogFactory.build();
 
+    /**
+     * 映射结果集与实体类
+     *
+     * @param resultSet 结果集
+     * @return 实体类List
+     */
     public static List<Goods> extract(ResultSet resultSet)
     {
         ArrayList<Goods> goodsList = new ArrayList<>();

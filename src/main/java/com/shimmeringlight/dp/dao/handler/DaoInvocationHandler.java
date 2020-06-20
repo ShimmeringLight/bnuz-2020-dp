@@ -8,16 +8,23 @@ import com.shimmeringlight.dp.utils.annotations.Login;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+/**
+ * 数据访问对象的InvocationHandler，用于处理登陆
+ */
 public class DaoInvocationHandler implements InvocationHandler
 {
+    //代理目标
     Object target;
 
     Log log = LogFactory.build();
 
+    /**
+     * 检查登录注解是否存在，若存在且要求登陆，则执行登录验证
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
     {
-        if (!target.getClass().getAnnotation(Login.class).value())
+        if (target.getClass().isAnnotationPresent(Login.class) && !target.getClass().getAnnotation(Login.class).value())
             return method.invoke(target, args);
         if (!LoginRetention.isLogin())
         {
