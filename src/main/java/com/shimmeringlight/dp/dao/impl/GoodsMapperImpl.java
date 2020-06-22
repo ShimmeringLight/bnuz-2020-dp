@@ -16,7 +16,6 @@ import java.util.List;
  * @see com.shimmeringlight.dp.dao.GoodsMapper
  * 商品数据访问层实现，为单例
  */
-@Login
 public class GoodsMapperImpl implements GoodsMapper
 {
     Statement statement;
@@ -25,7 +24,6 @@ public class GoodsMapperImpl implements GoodsMapper
 
     /**
      * 映射结果集与实体类
-     *
      * @param resultSet 结果集
      * @return 实体类List
      */
@@ -56,6 +54,7 @@ public class GoodsMapperImpl implements GoodsMapper
     }
 
     @Override
+    @Login
     public void insertByEntity(Goods goods)
     {
         String sql = "insert into Goods (oriPrice, discount, weight, inventory, goodsName) " +
@@ -72,6 +71,7 @@ public class GoodsMapperImpl implements GoodsMapper
     }
 
     @Override
+    @Login
     public void deleteById(int id)
     {
         String sql = "delete from Goods where goodsId = " + id;
@@ -86,6 +86,7 @@ public class GoodsMapperImpl implements GoodsMapper
     }
 
     @Override
+    @Login
     public void deleteByName(String name)
     {
         String sql = "delete from Goods where goodsName = '" + name + "'";
@@ -100,6 +101,7 @@ public class GoodsMapperImpl implements GoodsMapper
     }
 
     @Override
+    @Login
     public void updateByEntity(Goods goods)
     {
         String sql = "update Goods set oriPrice = " + goods.getOriPrice() +

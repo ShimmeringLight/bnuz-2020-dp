@@ -1,5 +1,8 @@
 package com.shimmeringlight.dp.log;
 
+/**
+ * 日志接口
+ */
 public interface Log
 {
     public LogEntity info(String msg);

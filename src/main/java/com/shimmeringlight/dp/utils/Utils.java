@@ -3,6 +3,9 @@ package com.shimmeringlight.dp.utils;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
 
+/**
+ * 工具类
+ */
 public class Utils
 {
     private static final Log log = LogFactory.build();

@@ -1,5 +1,8 @@
 package com.shimmeringlight.dp.log;
 
+/**
+ * 日志实体类
+ */
 public class LogEntity implements Log
 {
     private final String content;

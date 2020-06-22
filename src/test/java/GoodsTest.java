@@ -3,6 +3,7 @@ import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
+import com.shimmeringlight.dp.service.login.LoginRetention;
 import com.shimmeringlight.dp.service.login.LoginService;
 import com.shimmeringlight.dp.service.login.LoginServiceImpl;
 import org.junit.After;
@@ -22,7 +23,7 @@ public class GoodsTest
     @Before
     public void beforeTest()
     {
-        loginService.login("root", "123456");
+        LoginRetention.setIsLogin(true);
         Goods goods = new Goods(100, 90, 10, 100, "Test");
         goodsMapper.insertByEntity(goods);
     }

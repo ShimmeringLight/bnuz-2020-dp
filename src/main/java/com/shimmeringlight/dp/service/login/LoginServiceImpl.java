@@ -14,6 +14,12 @@ public class LoginServiceImpl implements LoginService
 
     UserMapper userMapper = daoFactory.buildUserMapper();
 
+    /**
+     * 登录
+     * @param userName 用户名
+     * @param password 密码
+     * @return 是否登录成功
+     */
     @Override
     public boolean login(String userName, String password)
     {

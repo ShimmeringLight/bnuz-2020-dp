@@ -4,6 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * 配置文件读取对象
+ */
 public class LoadedProperties
 {
     private final Properties properties;

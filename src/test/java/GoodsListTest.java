@@ -5,6 +5,7 @@ import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.entity.GoodsList;
 import com.shimmeringlight.dp.entity.Orders;
+import com.shimmeringlight.dp.service.login.LoginRetention;
 import com.shimmeringlight.dp.service.login.LoginService;
 import com.shimmeringlight.dp.service.login.LoginServiceImpl;
 import org.junit.After;
@@ -24,7 +25,7 @@ public class GoodsListTest
     @Before
     public void before()
     {
-        loginService.login("root", "123456");
+        LoginRetention.setIsLogin(true);
         Goods goods = new Goods();
         goods.setGoodsName("Test");
         goods.setInventory(100);

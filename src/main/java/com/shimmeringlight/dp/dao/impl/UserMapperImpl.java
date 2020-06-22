@@ -16,7 +16,6 @@ import java.util.List;
  * @see com.shimmeringlight.dp.dao.UserMapper
  * 用户数据访问层实现，为单例
  */
-@Login(value = false)
 public class UserMapperImpl implements UserMapper
 {
     Statement statement;
@@ -33,6 +32,7 @@ public class UserMapperImpl implements UserMapper
         return UserMapperImpl.Instance.instance;
     }
 
+    @Login
     public void insert(String userName, String password)
     {
         try
@@ -48,6 +48,7 @@ public class UserMapperImpl implements UserMapper
         }
     }
 
+    @Login
     public void deleteByUserName(String userName)
     {
         try
@@ -62,6 +63,7 @@ public class UserMapperImpl implements UserMapper
         }
     }
 
+    @Login
     @Override
     public void deleteById(int id)
     {
@@ -83,6 +85,7 @@ public class UserMapperImpl implements UserMapper
         }
     }
 
+    @Login
     public void updateByEntity(User user)
     {
         String sql = "update user set userName = '" + user.getUserName()

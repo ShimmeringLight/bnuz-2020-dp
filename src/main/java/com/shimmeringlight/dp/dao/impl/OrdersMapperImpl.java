@@ -16,7 +16,6 @@ import java.util.List;
  * @see com.shimmeringlight.dp.dao.OrdersMapper
  * 订单数据访问层实现，为单例
  */
-@Login
 public class OrdersMapperImpl implements OrdersMapper
 {
     Statement statement;
@@ -55,6 +54,7 @@ public class OrdersMapperImpl implements OrdersMapper
     }
 
     @Override
+    @Login
     public void insertByEntity(Orders orders)
     {
         String sql = "insert into Orders (orderPrice, num, weight) VALUES ("
@@ -72,6 +72,7 @@ public class OrdersMapperImpl implements OrdersMapper
     }
 
     @Override
+    @Login
     public void deleteById(int id)
     {
         String sql = "delete from Orders where orderId = " + id;
@@ -86,6 +87,7 @@ public class OrdersMapperImpl implements OrdersMapper
     }
 
     @Override
+    @Login
     public void updateByEntity(Orders orders)
     {
         String sql = "update Orders set "

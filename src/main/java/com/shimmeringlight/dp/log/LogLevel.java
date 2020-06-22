@@ -3,6 +3,9 @@ package com.shimmeringlight.dp.log;
 
 import com.shimmeringlight.dp.utils.config.LoadedProperties;
 
+/**
+ * 日志级别枚举
+ */
 public enum LogLevel
 {
     INFO, DEBUG, ERROR;

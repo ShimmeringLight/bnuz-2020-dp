@@ -3,6 +3,7 @@ import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Orders;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
+import com.shimmeringlight.dp.service.login.LoginRetention;
 import com.shimmeringlight.dp.service.login.LoginService;
 import com.shimmeringlight.dp.service.login.LoginServiceImpl;
 import org.junit.After;
@@ -20,7 +21,7 @@ public class OrdersTest
     @Before
     public void beforeTest()
     {
-        loginService.login("root", "123456");
+        LoginRetention.setIsLogin(true);
         Orders orders = new Orders();
         orders.setOrderPrice(100);
         orders.setWeight(1);

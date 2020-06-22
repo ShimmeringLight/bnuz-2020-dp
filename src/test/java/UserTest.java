@@ -1,6 +1,8 @@
 import com.shimmeringlight.dp.dao.UserMapper;
 import com.shimmeringlight.dp.dao.impl.UserMapperImpl;
 import com.shimmeringlight.dp.entity.User;
+import com.shimmeringlight.dp.service.login.LoginService;
+import com.shimmeringlight.dp.service.login.LoginServiceImpl;
 import org.junit.Test;
 
 import java.util.List;
@@ -10,6 +12,8 @@ public class UserTest
     @Test
     public void test() throws Exception
     {
+        LoginService loginService = LoginServiceImpl.getInstance();
+        loginService.login("root","123456");
         UserMapper userMapper = UserMapperImpl.getInstance();
         userMapper.insert("Test", "password");
         userMapper.insert("Test2", "password2");

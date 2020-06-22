@@ -16,7 +16,6 @@ import java.util.List;
  * @see com.shimmeringlight.dp.dao.GoodsListMapper
  * 订单商品条目数据访问层实现类
  */
-@Login
 public class GoodsListMapperImpl implements GoodsListMapper
 {
 
@@ -57,6 +56,7 @@ public class GoodsListMapperImpl implements GoodsListMapper
     }
 
     @Override
+    @Login
     public void insertByEntity(GoodsList goodsList)
     {
         String sql = "insert into GoodsList (goodsId, orderId,goodsAmount, finalPrice) VALUES ("
@@ -75,6 +75,7 @@ public class GoodsListMapperImpl implements GoodsListMapper
     }
 
     @Override
+    @Login
     public void deleteById(int id)
     {
         String sql = "delete from GoodsList where goodsListId = " + id;
@@ -89,6 +90,7 @@ public class GoodsListMapperImpl implements GoodsListMapper
     }
 
     @Override
+    @Login
     public void updateByEntity(GoodsList goodsList)
     {
         String sql = "update GoodsList set"
