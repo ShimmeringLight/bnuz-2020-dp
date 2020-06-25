@@ -23,6 +23,11 @@ public class GoodsServiceImpl implements GoodsService
 
     GoodsMapper goodsMapper = DaoFactoryImpl.getInstance().buildGoodsMapper();
 
+    /**
+     * 根据策略计算商品价格
+     * @param goods 商品
+     * @return 商品价格
+     */
     @Override
     public int calcFinalPrice(Goods goods)
     {
