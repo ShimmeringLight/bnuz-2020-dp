@@ -1,5 +1,7 @@
 package com.shimmeringlight.dp.entity;
 
+import java.util.Scanner;
+
 /**
  * 商品实体类
  */
@@ -25,6 +27,20 @@ public class Goods
         this.weight = weight;
         this.inventory = inventory;
         this.goodsName = goodsName;
+    }
+
+    public Goods(Scanner input)
+    {
+        System.out.println("请输入商品名称");
+        this.goodsName = input.next();
+        System.out.println("请输入原价");
+        this.oriPrice = input.nextInt();
+        System.out.println("请输入折扣% 0-100");
+        this.discount = input.nextInt();
+        System.out.println("请输入商品重量");
+        this.weight = input.nextInt();
+        System.out.println("请输入库存");
+        this.inventory = input.nextInt();
     }
 
     @Override

@@ -12,4 +12,22 @@ public class PlainDiscount implements DiscountStrategy
     {
         return (int)Math.floor(goods.getOriPrice() * goods.getDiscount() * 0.01);
     }
+
+    @Override
+    public String toString()
+    {
+        return "正常折扣策略";
+    }
+
+    //单例
+    private static class Instance
+    {
+        public static final PlainDiscount instance = new PlainDiscount();
+    }
+
+
+    public static PlainDiscount getInstance()
+    {
+        return PlainDiscount.Instance.instance;
+    }
 }

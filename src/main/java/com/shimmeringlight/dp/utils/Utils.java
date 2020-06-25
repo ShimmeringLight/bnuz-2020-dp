@@ -18,4 +18,9 @@ public class Utils
     {
         log.debug("SQL: " + sql);
     }
+
+    public static void printFunction(String name,int code)
+    {
+        System.out.println("【" + code + "】" + name);
+    }
 }

@@ -12,4 +12,22 @@ public class NoDiscount implements DiscountStrategy
     {
         return goods.getOriPrice();
     }
+
+    @Override
+    public String toString()
+    {
+        return "无折扣策略";
+    }
+
+    //单例
+    private static class Instance
+    {
+        public static final NoDiscount instance = new NoDiscount();
+    }
+
+
+    public static NoDiscount getInstance()
+    {
+        return NoDiscount.Instance.instance;
+    }
 }
