@@ -10,7 +10,7 @@ public class PlainDiscount implements DiscountStrategy
     @Override
     public int calcPrice(Goods goods)
     {
-        return (int)Math.floor(goods.getOriPrice() * goods.getDiscount() * 0.01);
+        return (int) Math.floor(goods.getOriPrice() * goods.getDiscount() * 0.01);
     }
 
     @Override

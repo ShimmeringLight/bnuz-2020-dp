@@ -14,7 +14,7 @@ public class ClintServiceImpl implements ClintService
 {
     GoodsService goodsService = GoodsServiceImpl.getInstance();
 
-    ModuleEnum currentModule =  ModuleEnum.SELECT;
+    ModuleEnum currentModule = ModuleEnum.SELECT;
 
     Log log = LogFactory.build();
 
@@ -31,11 +31,11 @@ public class ClintServiceImpl implements ClintService
         while (currentModule != ModuleEnum.EXIT)
         {
             log.debug("开始模块选择");
-            if(currentModule == ModuleEnum.SELECT)
+            if (currentModule == ModuleEnum.SELECT)
             {
                 System.out.println("请选择要进入的模块:");
                 System.out.println("【" + ModuleEnum.GOODS + "】商品" +
-                        "【"+ ModuleEnum.ORDERS +"】订单 " +
+                        "【" + ModuleEnum.ORDERS + "】订单 " +
                         "【" + ModuleEnum.USER + "】用户 " +
                         "【" + ModuleEnum.SELECT + "】返回模块选择 + " +
                         "【" + ModuleEnum.EXIT + "】退出程序");

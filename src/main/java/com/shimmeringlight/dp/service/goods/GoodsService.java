@@ -1,7 +1,6 @@
 package com.shimmeringlight.dp.service.goods;
 
 import com.shimmeringlight.dp.entity.Goods;
-import com.shimmeringlight.dp.service.goods.strategy.DiscountStrategy;
 
 import java.util.Scanner;
 
@@ -12,6 +11,7 @@ public interface GoodsService
 {
     /**
      * 计算最终价格
+     *
      * @param goods 商品
      * @return 最终价格
      */
@@ -19,30 +19,35 @@ public interface GoodsService
 
     /**
      * 功能选择
+     *
      * @param input 键盘输入
      */
     void selectFunction(Scanner input);
 
     /**
      * 更新商品功能
+     *
      * @param input 键盘输入
      */
     void updateFunction(Scanner input);
 
     /**
      * 删除商品功能
+     *
      * @param input 键盘输入
      */
     void deleteFunction(Scanner input);
 
     /**
      * 插入功能
+     *
      * @param input 键盘输入
      */
     void insertFunction(Scanner input);
 
     /**
      * 根据商品名查询功能
+     *
      * @param input 键盘输入
      */
     void queryNameFunction(Scanner input);

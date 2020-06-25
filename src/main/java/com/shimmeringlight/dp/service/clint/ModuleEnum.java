@@ -2,7 +2,7 @@ package com.shimmeringlight.dp.service.clint;
 
 public enum ModuleEnum
 {
-    SELECT(-1),GOODS(1),ORDERS(2),USER(3),EXIT(-2);
+    SELECT(-1), GOODS(1), ORDERS(2), USER(3), EXIT(-2);
     private int module;
 
     ModuleEnum(int module)

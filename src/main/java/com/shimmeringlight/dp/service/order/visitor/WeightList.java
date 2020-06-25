@@ -1,6 +1,5 @@
 package com.shimmeringlight.dp.service.order.visitor;
 
-import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.entity.GoodsList;
 
 import java.util.List;

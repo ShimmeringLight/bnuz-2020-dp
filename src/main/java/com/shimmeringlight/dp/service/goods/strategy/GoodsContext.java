@@ -1,6 +1,5 @@
 package com.shimmeringlight.dp.service.goods.strategy;
 
-import com.shimmeringlight.dp.dao.impl.GoodsMapperImpl;
 import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.service.goods.GoodsFunctionEnum;
 

@@ -24,6 +24,7 @@ public class GoodsMapperImpl implements GoodsMapper
 
     /**
      * 映射结果集与实体类
+     *
      * @param resultSet 结果集
      * @return 实体类List
      */

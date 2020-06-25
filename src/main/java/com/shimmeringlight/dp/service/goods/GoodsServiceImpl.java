@@ -1,10 +1,8 @@
 package com.shimmeringlight.dp.service.goods;
 
 import com.shimmeringlight.dp.dao.GoodsMapper;
-import com.shimmeringlight.dp.dao.factory.DaoFactory;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
-import com.shimmeringlight.dp.service.goods.strategy.DiscountStrategy;
 import com.shimmeringlight.dp.service.goods.strategy.GoodsContext;
 import com.shimmeringlight.dp.service.goods.strategy.NoDiscount;
 import com.shimmeringlight.dp.service.goods.strategy.PlainDiscount;
@@ -25,6 +23,7 @@ public class GoodsServiceImpl implements GoodsService
 
     /**
      * 根据策略计算商品价格
+     *
      * @param goods 商品
      * @return 商品价格
      */
@@ -41,13 +40,13 @@ public class GoodsServiceImpl implements GoodsService
         while (GoodsContext.getCurrentFunction() != GoodsFunctionEnum.EXIT)
         {
             System.out.println("请选择功能");
-            Utils.printFunction(GoodsFunctionEnum.SELECT.getName(),GoodsFunctionEnum.SELECT.getValue());
-            Utils.printFunction(GoodsFunctionEnum.SET_STRATEGY.getName(),GoodsFunctionEnum.SET_STRATEGY.getValue());
-            Utils.printFunction(GoodsFunctionEnum.UPDATE.getName(),GoodsFunctionEnum.UPDATE.getValue());
-            Utils.printFunction(GoodsFunctionEnum.DELETE.getName(),GoodsFunctionEnum.DELETE.getValue());
-            Utils.printFunction(GoodsFunctionEnum.INSERT.getName(),GoodsFunctionEnum.INSERT.getValue());
-            Utils.printFunction(GoodsFunctionEnum.QUERY_NAME.getName(),GoodsFunctionEnum.QUERY_NAME.getValue());
-            Utils.printFunction(GoodsFunctionEnum.QUERY_ALL.getName(),GoodsFunctionEnum.QUERY_ALL.getValue());
+            Utils.printFunction(GoodsFunctionEnum.SELECT.getName(), GoodsFunctionEnum.SELECT.getValue());
+            Utils.printFunction(GoodsFunctionEnum.SET_STRATEGY.getName(), GoodsFunctionEnum.SET_STRATEGY.getValue());
+            Utils.printFunction(GoodsFunctionEnum.UPDATE.getName(), GoodsFunctionEnum.UPDATE.getValue());
+            Utils.printFunction(GoodsFunctionEnum.DELETE.getName(), GoodsFunctionEnum.DELETE.getValue());
+            Utils.printFunction(GoodsFunctionEnum.INSERT.getName(), GoodsFunctionEnum.INSERT.getValue());
+            Utils.printFunction(GoodsFunctionEnum.QUERY_NAME.getName(), GoodsFunctionEnum.QUERY_NAME.getValue());
+            Utils.printFunction(GoodsFunctionEnum.QUERY_ALL.getName(), GoodsFunctionEnum.QUERY_ALL.getValue());
             GoodsContext.setCurrentFunction(GoodsFunctionEnum.valueOf(input.nextInt()));
             switch (GoodsContext.getCurrentFunction())
             {
@@ -123,7 +122,7 @@ public class GoodsServiceImpl implements GoodsService
     {
         System.out.println("所有商品：");
         List<Goods> goodsList = goodsMapper.findAll();
-        for(Goods goods: goodsList)
+        for (Goods goods : goodsList)
         {
             System.out.println(goods);
         }
@@ -136,9 +135,9 @@ public class GoodsServiceImpl implements GoodsService
         do
         {
             System.out.println("请选择折扣策略,当前为" + goodsContext.getDiscountStrategy());
-            Utils.printFunction("无折扣策略",1);
-            Utils.printFunction("正常折扣策略",2);
-            Utils.printFunction("退出策略选择",-1);
+            Utils.printFunction("无折扣策略", 1);
+            Utils.printFunction("正常折扣策略", 2);
+            Utils.printFunction("退出策略选择", -1);
             code = input.nextInt();
             switch (code)
             {
@@ -154,7 +153,7 @@ public class GoodsServiceImpl implements GoodsService
                     System.out.println("请重新选择");
                     break;
             }
-        }while (code != -1);
+        } while (code != -1);
 
     }
 

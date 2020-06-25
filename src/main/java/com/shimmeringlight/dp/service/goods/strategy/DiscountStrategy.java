@@ -9,6 +9,7 @@ public interface DiscountStrategy
 {
     /**
      * 计算最终价格
+     *
      * @param goods 商品
      * @return 最终价格
      */

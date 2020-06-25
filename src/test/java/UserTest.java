@@ -13,7 +13,7 @@ public class UserTest
     public void test() throws Exception
     {
         LoginService loginService = LoginServiceImpl.getInstance();
-        loginService.login("root","123456");
+        loginService.login("root", "123456");
         UserMapper userMapper = UserMapperImpl.getInstance();
         userMapper.insert("Test", "password");
         userMapper.insert("Test2", "password2");
