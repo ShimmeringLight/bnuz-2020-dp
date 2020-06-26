@@ -1,6 +1,9 @@
 package com.shimmeringlight.dp.dao.impl;
 
 import com.shimmeringlight.dp.dao.GoodsListMapper;
+import com.shimmeringlight.dp.dao.GoodsMapper;
+import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
+import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.entity.GoodsList;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
@@ -22,6 +25,8 @@ public class GoodsListMapperImpl implements GoodsListMapper
     static Log log = LogFactory.build();
 
     Statement statement;
+
+    GoodsMapper goodsMapper = DaoFactoryImpl.getInstance().buildGoodsMapper();
 
     /**
      * 映射结果集与实体类
@@ -157,6 +162,43 @@ public class GoodsListMapperImpl implements GoodsListMapper
         } catch (SQLException e)
         {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Goods> findGoodsByOrderId(int id)
+    {
+        String sql = "select * from GoodsList where orderId = " + id;
+        Utils.logSQL(sql);
+        try
+        {
+            ResultSet resultSet = statement.executeQuery(sql);
+            List<GoodsList> lists = extract(resultSet);
+            List<Goods> result = new ArrayList<>();
+            for(GoodsList g:lists)
+            {
+                result.add(goodsMapper.findById(g.getGoodsId()));
+            }
+            return result;
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<GoodsList> findByOrderId(int id)
+    {
+        String sql = "select * from GoodsList where orderId = " + id;
+        Utils.logSQL(sql);
+        try
+        {
+            return extract(statement.executeQuery(sql));
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
         }
         return null;
     }

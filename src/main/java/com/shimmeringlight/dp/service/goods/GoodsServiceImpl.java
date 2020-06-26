@@ -40,18 +40,17 @@ public class GoodsServiceImpl implements GoodsService
         while (GoodsContext.getCurrentFunction() != GoodsFunctionEnum.EXIT)
         {
             System.out.println("请选择功能");
-            Utils.printFunction(GoodsFunctionEnum.SELECT.getName(), GoodsFunctionEnum.SELECT.getValue());
-            Utils.printFunction(GoodsFunctionEnum.SET_STRATEGY.getName(), GoodsFunctionEnum.SET_STRATEGY.getValue());
-            Utils.printFunction(GoodsFunctionEnum.UPDATE.getName(), GoodsFunctionEnum.UPDATE.getValue());
-            Utils.printFunction(GoodsFunctionEnum.DELETE.getName(), GoodsFunctionEnum.DELETE.getValue());
-            Utils.printFunction(GoodsFunctionEnum.INSERT.getName(), GoodsFunctionEnum.INSERT.getValue());
-            Utils.printFunction(GoodsFunctionEnum.QUERY_NAME.getName(), GoodsFunctionEnum.QUERY_NAME.getValue());
-            Utils.printFunction(GoodsFunctionEnum.QUERY_ALL.getName(), GoodsFunctionEnum.QUERY_ALL.getValue());
+            Utils.printFunction(GoodsFunctionEnum.SELECT.getName(), GoodsFunctionEnum.SELECT.getCode());
+            Utils.printFunction(GoodsFunctionEnum.SET_STRATEGY.getName(), GoodsFunctionEnum.SET_STRATEGY.getCode());
+            Utils.printFunction(GoodsFunctionEnum.UPDATE.getName(), GoodsFunctionEnum.UPDATE.getCode());
+            Utils.printFunction(GoodsFunctionEnum.DELETE.getName(), GoodsFunctionEnum.DELETE.getCode());
+            Utils.printFunction(GoodsFunctionEnum.INSERT.getName(), GoodsFunctionEnum.INSERT.getCode());
+            Utils.printFunction(GoodsFunctionEnum.QUERY_NAME.getName(), GoodsFunctionEnum.QUERY_NAME.getCode());
+            Utils.printFunction(GoodsFunctionEnum.QUERY_ALL.getName(), GoodsFunctionEnum.QUERY_ALL.getCode());
             GoodsContext.setCurrentFunction(GoodsFunctionEnum.valueOf(input.nextInt()));
             switch (GoodsContext.getCurrentFunction())
             {
                 case SELECT:
-                    this.selectFunction(input);
                     break;
                 case EXIT:
                     System.out.println("退出当前功能");

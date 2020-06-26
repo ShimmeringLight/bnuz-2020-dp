@@ -1,5 +1,11 @@
 package com.shimmeringlight.dp.entity;
 
+import com.shimmeringlight.dp.service.goods.strategy.DiscountStrategy;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 /**
  * 订单实体类
  */
@@ -16,6 +22,19 @@ public class Orders
 
     public Orders()
     {
+    }
+
+    public Orders(Map<Goods,Integer> goodsList, DiscountStrategy strategy)
+    {
+        this.orderPrice = 0;
+        this.num = 0;
+        this.weight = 0;
+        for(Map.Entry<Goods,Integer> entry:goodsList.entrySet())
+        {
+            this.orderPrice += strategy.calcPrice(entry.getKey()) * entry.getValue();
+            num += entry.getValue();
+            weight += entry.getKey().getWeight() * entry.getValue();
+        }
     }
 
     @Override

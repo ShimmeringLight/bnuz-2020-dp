@@ -1,13 +1,30 @@
 package com.shimmeringlight.dp.service.order.visitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 订单访问者接口
  */
-public interface OrderPrintVisitor
+public abstract class OrderPrintVisitor
 {
-    void visit(PriceList priceList);
+    List<ItemPart> itemPartList = new ArrayList<>();
 
-    void visit(InventoryList inventoryList);
+    abstract public void visit(PriceList priceList);
 
-    void visit(WeightList weightList);
+    abstract public void visit(InventoryList inventoryList);
+
+    abstract public void visit(WeightList weightList);
+
+    abstract public void print();
+
+    public List<ItemPart> getItemPartList()
+    {
+        return itemPartList;
+    }
+
+    public void setItemPartList(List<ItemPart> itemPartList)
+    {
+        this.itemPartList = itemPartList;
+    }
 }

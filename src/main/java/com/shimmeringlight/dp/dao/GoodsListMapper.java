@@ -1,5 +1,6 @@
 package com.shimmeringlight.dp.dao;
 
+import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.entity.GoodsList;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface GoodsListMapper
     GoodsList findByEntity(GoodsList goodsList);
 
     List<GoodsList> findAll();
+
+    List<Goods> findGoodsByOrderId(int id);
+
+    List<GoodsList> findByOrderId(int id);
 }

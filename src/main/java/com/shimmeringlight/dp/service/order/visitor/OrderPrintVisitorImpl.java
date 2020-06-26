@@ -9,7 +9,7 @@ import com.shimmeringlight.dp.entity.Orders;
 import com.shimmeringlight.dp.service.goods.GoodsService;
 import com.shimmeringlight.dp.service.goods.GoodsServiceImpl;
 
-public class OrderPrintVisitorImpl implements OrderPrintVisitor
+public class OrderPrintVisitorImpl extends OrderPrintVisitor
 {
     GoodsMapper goodsMapper = DaoFactoryImpl.getInstance().buildGoodsMapper();
 
@@ -20,6 +20,7 @@ public class OrderPrintVisitorImpl implements OrderPrintVisitor
     @Override
     public void visit(PriceList priceList)
     {
+        System.out.println("价格清单：");
         for (GoodsList goodsLists : priceList.getLists())
         {
             Goods current = goodsMapper.findById(goodsLists.getGoodsId());
@@ -36,6 +37,7 @@ public class OrderPrintVisitorImpl implements OrderPrintVisitor
     @Override
     public void visit(InventoryList inventoryList)
     {
+        System.out.println("数量清单：");
         for (GoodsList goodsLists : inventoryList.getLists())
         {
             Goods current = goodsMapper.findById(goodsLists.getGoodsId());
@@ -48,6 +50,7 @@ public class OrderPrintVisitorImpl implements OrderPrintVisitor
     @Override
     public void visit(WeightList weightList)
     {
+        System.out.println("重量清单");
         for (GoodsList lists : weightList.getGoodsLists())
         {
             Goods current = goodsMapper.findById(lists.getGoodsId());
@@ -58,6 +61,15 @@ public class OrderPrintVisitorImpl implements OrderPrintVisitor
                             current.getGoodsName() + "\t" +
                             current.getWeight() + "\t" +
                             orders.getWeight());
+        }
+    }
+
+    @Override
+    public void print()
+    {
+        for(ItemPart part:this.getItemPartList())
+        {
+            part.accept(this);
         }
     }
 }

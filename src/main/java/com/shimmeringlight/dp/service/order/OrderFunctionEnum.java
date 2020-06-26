@@ -1,36 +1,33 @@
-package com.shimmeringlight.dp.service.goods;
+package com.shimmeringlight.dp.service.order;
 
-/**
- * 功能枚举
- */
-public enum GoodsFunctionEnum
+public enum OrderFunctionEnum
 {
     SELECT(0, "功能选择"),
-    SET_STRATEGY(1, "设置策略"),
-    UPDATE(2, "更新商品数据"),
-    DELETE(3, "删除商品"),
-    INSERT(4, "增加商品"),
-    QUERY_NAME(5, "根据名称查询"),
+    PRINT(1, "打印订单"),
+    UPDATE(2, "更新订单数据"),
+    DELETE(3, "删除订单"),
+    INSERT(4, "增加订单"),
+    QUERY_FULL(5, "根据完整信息查询"),
     QUERY_ALL(6, "查询全部"),
     EXIT(-1, "返回模块选择");
     private int code;
 
     private String name;
 
-    GoodsFunctionEnum(int code, String name)
+    OrderFunctionEnum(int code, String name)
     {
         this.code = code;
         this.name = name;
     }
 
-    public static GoodsFunctionEnum valueOf(int value)
+    public static OrderFunctionEnum valueOf(int code)
     {
-        switch (value)
+        switch (code)
         {
             case 0:
                 return SELECT;
             case 1:
-                return SET_STRATEGY;
+                return PRINT;
             case 2:
                 return UPDATE;
             case 3:
@@ -38,7 +35,7 @@ public enum GoodsFunctionEnum
             case 4:
                 return INSERT;
             case 5:
-                return QUERY_NAME;
+                return QUERY_FULL;
             case 6:
                 return QUERY_ALL;
             case -1:
@@ -47,19 +44,23 @@ public enum GoodsFunctionEnum
         return null;
     }
 
-    @Override
-    public String toString()
-    {
-        return String.valueOf(this.code);
-    }
-
     public int getCode()
     {
         return code;
     }
 
+    public void setCode(int code)
+    {
+        this.code = code;
+    }
+
     public String getName()
     {
         return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
 }
