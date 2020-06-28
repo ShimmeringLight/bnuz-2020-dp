@@ -22,6 +22,9 @@ public class OrderPo
 
     public OrderPo()
     {
+        orderPrice = 0;
+        num = 0;
+        weight = 0;
     }
 
     public OrderPo(int orderId, int orderPrice, int num, int weight)

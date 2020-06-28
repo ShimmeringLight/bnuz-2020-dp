@@ -15,10 +15,7 @@ import com.shimmeringlight.dp.service.goodslist.GoodsListServiceImpl;
 import com.shimmeringlight.dp.service.order.visitor.*;
 import com.shimmeringlight.dp.utils.Utils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class OrderServiceImpl implements OrderService
 {
@@ -201,21 +198,58 @@ public class OrderServiceImpl implements OrderService
     {
         System.out.println("请输入订单id");
         int id = input.nextInt();
+        goodsListMapper.deleteByOrderId(id);
         ordersMapper.deleteById(id);
+        System.out.println("删除完成");
     }
 
     @Override
     public void startInsert(Scanner input)
     {
-
+        System.out.println("开始输入订单条目");
+        int goodsId = 0;
+        List<GoodsList> lists = new ArrayList<>();
+        OrderPo orderPo = new OrderPo();
+        do
+        {
+            System.out.println("请输入商品id,输入-1结束输入订单条目");
+            goodsId = input.nextInt();
+            System.out.println("请输入数量");
+            int amount = input.nextInt();
+            GoodsList goodsList = new GoodsList();
+            goodsList.setGoodsId(goodsId);
+            goodsList.setGoodsAmount(amount);
+            Goods goods = goodsMapper.findById(goodsId);
+            int price = goodsService.calcFinalPrice(goods) * amount;
+            orderPo.setNum(orderPo.getNum() + amount);
+            orderPo.setOrderPrice(orderPo.getOrderPrice() + price);
+            orderPo.setWeight(orderPo.getWeight() + goods.getWeight());
+            lists.add(goodsList);
+        } while (goodsId != -1);
+        ordersMapper.insertByEntity(orderPo);
+        int orderId = ordersMapper.findByEntity(orderPo).getOrderId();
+        for(GoodsList g:lists)
+        {
+            g.setOrderId(orderId);
+            goodsListMapper.insertByEntity(g);
+        }
+        System.out.println("新增订单完成");
     }
 
+    /**
+     * 未完成....
+     * @param input 键盘输入
+     */
     @Override
     public void startQueryFull(Scanner input)
     {
 
     }
 
+    /**
+     * 未完成....
+     * @param input 键盘输入
+     */
     @Override
     public void startQueryAll(Scanner input)
     {

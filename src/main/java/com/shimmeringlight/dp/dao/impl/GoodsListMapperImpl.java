@@ -95,6 +95,20 @@ public class GoodsListMapperImpl implements GoodsListMapper
     }
 
     @Override
+    public void deleteByOrderId(int id)
+    {
+        String sql = "delete from GoodsList where orderId = " + id;
+        Utils.logSQL(sql);
+        try
+        {
+            statement.executeUpdate(sql);
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
     @Login
     public void updateByEntity(GoodsList goodsList)
     {

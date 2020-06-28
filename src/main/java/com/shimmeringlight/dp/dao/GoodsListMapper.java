@@ -16,6 +16,8 @@ public interface GoodsListMapper
 
     void deleteById(int id);
 
+    void deleteByOrderId(int id);
+
     void updateByEntity(GoodsList goodsList);
 
     GoodsList findById(int id);
