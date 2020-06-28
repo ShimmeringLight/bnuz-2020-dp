@@ -1,6 +1,6 @@
 import com.shimmeringlight.dp.dao.OrdersMapper;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
-import com.shimmeringlight.dp.entity.Orders;
+import com.shimmeringlight.dp.entity.OrderPo;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
 import com.shimmeringlight.dp.service.login.LoginRetention;
@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class OrdersTest
+public class OrderTest
 {
     Log log = LogFactory.build();
 
@@ -22,27 +22,27 @@ public class OrdersTest
     public void beforeTest()
     {
         LoginRetention.setIsLogin(true);
-        Orders orders = new Orders();
-        orders.setOrderPrice(100);
-        orders.setWeight(1);
-        orders.setNum(10);
-        ordersMapper.insertByEntity(orders);
+        OrderPo orderPo = new OrderPo();
+        orderPo.setOrderPrice(100);
+        orderPo.setWeight(1);
+        orderPo.setNum(10);
+        ordersMapper.insertByEntity(orderPo);
         assert !ordersMapper.findAll().isEmpty();
     }
 
     @Test
     public void test()
     {
-        Orders orders = ordersMapper.findAll().get(0);
-        orders.setNum(15);
-        ordersMapper.updateByEntity(orders);
-        assert ordersMapper.findById(orders.getOrderId()).getNum() == 15;
+        OrderPo orderPo = ordersMapper.findAll().get(0);
+        orderPo.setNum(15);
+        ordersMapper.updateByEntity(orderPo);
+        assert ordersMapper.findById(orderPo.getOrderId()).getNum() == 15;
     }
 
     @After
     public void after()
     {
-        for (Orders orders : ordersMapper.findAll())
-            ordersMapper.deleteById(orders.getOrderId());
+        for (OrderPo orderPo : ordersMapper.findAll())
+            ordersMapper.deleteById(orderPo.getOrderId());
     }
 }

@@ -1,5 +1,7 @@
 package com.shimmeringlight.dp.entity;
 
+import java.util.Scanner;
+
 /**
  * 订单商品列表实体类
  */
@@ -31,6 +33,8 @@ public class GoodsList
                 ", finalPrice=" + finalPrice +
                 '}';
     }
+
+
 
     public int getGoodsListId()
     {

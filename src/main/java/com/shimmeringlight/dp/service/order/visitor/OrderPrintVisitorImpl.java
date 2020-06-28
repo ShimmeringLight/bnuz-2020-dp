@@ -5,7 +5,7 @@ import com.shimmeringlight.dp.dao.OrdersMapper;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.entity.GoodsList;
-import com.shimmeringlight.dp.entity.Orders;
+import com.shimmeringlight.dp.entity.OrderPo;
 import com.shimmeringlight.dp.service.goods.GoodsService;
 import com.shimmeringlight.dp.service.goods.GoodsServiceImpl;
 
@@ -41,9 +41,9 @@ public class OrderPrintVisitorImpl extends OrderPrintVisitor
         for (GoodsList goodsLists : inventoryList.getLists())
         {
             Goods current = goodsMapper.findById(goodsLists.getGoodsId());
-            Orders orders = ordersMapper.findById(goodsLists.getOrderId());
+            OrderPo orderPo = ordersMapper.findById(goodsLists.getOrderId());
             System.out.println("商品编号\t商品名\t数量");
-            System.out.println(current.getGoodId() + "\t" + current.getGoodsName() + "\t" + orders.getNum());
+            System.out.println(current.getGoodId() + "\t" + current.getGoodsName() + "\t" + orderPo.getNum());
         }
     }
 
@@ -54,13 +54,13 @@ public class OrderPrintVisitorImpl extends OrderPrintVisitor
         for (GoodsList lists : weightList.getGoodsLists())
         {
             Goods current = goodsMapper.findById(lists.getGoodsId());
-            Orders orders = ordersMapper.findById(lists.getOrderId());
+            OrderPo orderPo = ordersMapper.findById(lists.getOrderId());
             System.out.println("商品编号\t商品名\t重量\t总重量");
             System.out.println(
                     current.getGoodId() + "\t" +
                             current.getGoodsName() + "\t" +
                             current.getWeight() + "\t" +
-                            orders.getWeight());
+                            orderPo.getWeight());
         }
     }
 

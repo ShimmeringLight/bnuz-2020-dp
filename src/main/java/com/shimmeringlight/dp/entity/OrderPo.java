@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * 订单实体类
  */
-public class Orders
+public class OrderPo
 {
     //id
     private int orderId;
@@ -20,11 +20,19 @@ public class Orders
     //总重量
     private int weight;
 
-    public Orders()
+    public OrderPo()
     {
     }
 
-    public Orders(Map<Goods,Integer> goodsList, DiscountStrategy strategy)
+    public OrderPo(int orderId, int orderPrice, int num, int weight)
+    {
+        this.orderId = orderId;
+        this.orderPrice = orderPrice;
+        this.num = num;
+        this.weight = weight;
+    }
+
+    public OrderPo(Map<Goods,Integer> goodsList, DiscountStrategy strategy)
     {
         this.orderPrice = 0;
         this.num = 0;
@@ -40,12 +48,10 @@ public class Orders
     @Override
     public String toString()
     {
-        return "Orders{" +
-                "orderId=" + orderId +
-                ", orderPrice=" + orderPrice +
-                ", num=" + num +
-                ", weight=" + weight +
-                '}';
+        return "id：" + orderId +
+                " 订单总价：" + orderPrice +
+                " 商品数量" + num +
+                " 总重量" + weight;
     }
 
     public int getOrderId()

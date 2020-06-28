@@ -1,7 +1,7 @@
 package com.shimmeringlight.dp.dao.impl;
 
 import com.shimmeringlight.dp.dao.OrdersMapper;
-import com.shimmeringlight.dp.entity.Orders;
+import com.shimmeringlight.dp.entity.OrderPo;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
 import com.shimmeringlight.dp.utils.Utils;
@@ -28,24 +28,24 @@ public class OrdersMapperImpl implements OrdersMapper
      * @param resultSet 结果集
      * @return 实体类List
      */
-    private static List<Orders> extract(ResultSet resultSet)
+    private static List<OrderPo> extract(ResultSet resultSet)
     {
         int count = 0;
-        List<Orders> ordersList = new ArrayList<>();
+        List<OrderPo> orderPoList = new ArrayList<>();
         try
         {
             while (resultSet.next())
             {
-                Orders orders = new Orders();
-                orders.setOrderId(resultSet.getInt("orderId"));
-                orders.setOrderPrice(resultSet.getInt("orderPrice"));
-                orders.setNum(resultSet.getInt("num"));
-                orders.setWeight(resultSet.getInt("weight"));
-                ordersList.add(orders);
+                OrderPo orderPo = new OrderPo();
+                orderPo.setOrderId(resultSet.getInt("orderId"));
+                orderPo.setOrderPrice(resultSet.getInt("orderPrice"));
+                orderPo.setNum(resultSet.getInt("num"));
+                orderPo.setWeight(resultSet.getInt("weight"));
+                orderPoList.add(orderPo);
                 count++;
             }
             log.debug("Find: " + count);
-            return ordersList;
+            return orderPoList;
         } catch (SQLException e)
         {
             e.printStackTrace();
@@ -55,12 +55,12 @@ public class OrdersMapperImpl implements OrdersMapper
 
     @Override
     @Login
-    public void insertByEntity(Orders orders)
+    public void insertByEntity(OrderPo orderPo)
     {
         String sql = "insert into Orders (orderPrice, num, weight) VALUES ("
-                + orders.getOrderPrice() + ","
-                + orders.getNum() + ","
-                + orders.getWeight() + ")";
+                + orderPo.getOrderPrice() + ","
+                + orderPo.getNum() + ","
+                + orderPo.getWeight() + ")";
         Utils.logSQL(sql);
         try
         {
@@ -88,13 +88,13 @@ public class OrdersMapperImpl implements OrdersMapper
 
     @Override
     @Login
-    public void updateByEntity(Orders orders)
+    public void updateByEntity(OrderPo orderPo)
     {
         String sql = "update Orders set "
-                + "orderPrice = " + orders.getOrderPrice() + ","
-                + "num = " + orders.getNum() + ","
-                + "weight = " + orders.getWeight() + " "
-                + "where orderId = " + orders.getOrderId();
+                + "orderPrice = " + orderPo.getOrderPrice() + ","
+                + "num = " + orderPo.getNum() + ","
+                + "weight = " + orderPo.getWeight() + " "
+                + "where orderId = " + orderPo.getOrderId();
         Utils.logSQL(sql);
         try
         {
@@ -106,7 +106,7 @@ public class OrdersMapperImpl implements OrdersMapper
     }
 
     @Override
-    public Orders findById(int id)
+    public OrderPo findById(int id)
     {
         String sql = "select * from Orders where orderId = " + id;
         Utils.logSQL(sql);
@@ -121,12 +121,12 @@ public class OrdersMapperImpl implements OrdersMapper
     }
 
     @Override
-    public Orders findByEntity(Orders orders)
+    public OrderPo findByEntity(OrderPo orderPo)
     {
         String sql = "select * from Orders where "
-                + "orderPrice = " + orders.getOrderPrice() + " and "
-                + "num = " + orders.getNum() + " and "
-                + "weight = " + orders.getWeight();
+                + "orderPrice = " + orderPo.getOrderPrice() + " and "
+                + "num = " + orderPo.getNum() + " and "
+                + "weight = " + orderPo.getWeight();
         Utils.logSQL(sql);
         try
         {
@@ -139,7 +139,7 @@ public class OrdersMapperImpl implements OrdersMapper
     }
 
     @Override
-    public List<Orders> findAll()
+    public List<OrderPo> findAll()
     {
         String sql = "select * from Orders";
         Utils.logSQL(sql);

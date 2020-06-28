@@ -4,7 +4,7 @@ import com.shimmeringlight.dp.dao.OrdersMapper;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
 import com.shimmeringlight.dp.entity.GoodsList;
-import com.shimmeringlight.dp.entity.Orders;
+import com.shimmeringlight.dp.entity.OrderPo;
 import com.shimmeringlight.dp.service.login.LoginRetention;
 import com.shimmeringlight.dp.service.login.LoginService;
 import com.shimmeringlight.dp.service.login.LoginServiceImpl;
@@ -34,11 +34,11 @@ public class GoodsListTest
         goods.setOriPrice(100);
         goodsMapper.insertByEntity(goods);
 
-        Orders orders = new Orders();
-        orders.setOrderPrice(100);
-        orders.setWeight(1);
-        orders.setNum(10);
-        ordersMapper.insertByEntity(orders);
+        OrderPo orderPo = new OrderPo();
+        orderPo.setOrderPrice(100);
+        orderPo.setWeight(1);
+        orderPo.setNum(10);
+        ordersMapper.insertByEntity(orderPo);
         assert !ordersMapper.findAll().isEmpty();
 
         goods = goodsMapper.findByName("Test");
@@ -69,7 +69,7 @@ public class GoodsListTest
         for (Goods goods : goodsMapper.findAll())
             goodsMapper.deleteById(goods.getGoodId());
 
-        for (Orders orders : ordersMapper.findAll())
-            ordersMapper.deleteById(orders.getOrderId());
+        for (OrderPo orderPo : ordersMapper.findAll())
+            ordersMapper.deleteById(orderPo.getOrderId());
     }
 }

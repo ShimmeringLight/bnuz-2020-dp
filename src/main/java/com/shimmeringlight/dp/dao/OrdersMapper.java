@@ -1,6 +1,6 @@
 package com.shimmeringlight.dp.dao;
 
-import com.shimmeringlight.dp.entity.Orders;
+import com.shimmeringlight.dp.entity.OrderPo;
 
 import java.util.List;
 
@@ -11,15 +11,15 @@ import java.util.List;
  */
 public interface OrdersMapper
 {
-    void insertByEntity(Orders orders);
+    void insertByEntity(OrderPo orderPo);
 
     void deleteById(int id);
 
-    void updateByEntity(Orders orders);
+    void updateByEntity(OrderPo orderPo);
 
-    Orders findById(int id);
+    OrderPo findById(int id);
 
-    Orders findByEntity(Orders orders);
+    OrderPo findByEntity(OrderPo orderPo);
 
-    List<Orders> findAll();
+    List<OrderPo> findAll();
 }

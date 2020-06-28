@@ -40,13 +40,13 @@ public class GoodsServiceImpl implements GoodsService
         while (GoodsContext.getCurrentFunction() != GoodsFunctionEnum.EXIT)
         {
             System.out.println("请选择功能");
-            Utils.printFunction(GoodsFunctionEnum.SELECT.getName(), GoodsFunctionEnum.SELECT.getCode());
-            Utils.printFunction(GoodsFunctionEnum.SET_STRATEGY.getName(), GoodsFunctionEnum.SET_STRATEGY.getCode());
-            Utils.printFunction(GoodsFunctionEnum.UPDATE.getName(), GoodsFunctionEnum.UPDATE.getCode());
-            Utils.printFunction(GoodsFunctionEnum.DELETE.getName(), GoodsFunctionEnum.DELETE.getCode());
-            Utils.printFunction(GoodsFunctionEnum.INSERT.getName(), GoodsFunctionEnum.INSERT.getCode());
-            Utils.printFunction(GoodsFunctionEnum.QUERY_NAME.getName(), GoodsFunctionEnum.QUERY_NAME.getCode());
-            Utils.printFunction(GoodsFunctionEnum.QUERY_ALL.getName(), GoodsFunctionEnum.QUERY_ALL.getCode());
+            Utils.printlnFunction(GoodsFunctionEnum.SELECT.getCode(), GoodsFunctionEnum.SELECT.getName());
+            Utils.printlnFunction(GoodsFunctionEnum.SET_STRATEGY.getCode(), GoodsFunctionEnum.SET_STRATEGY.getName());
+            Utils.printlnFunction(GoodsFunctionEnum.UPDATE.getCode(), GoodsFunctionEnum.UPDATE.getName());
+            Utils.printlnFunction(GoodsFunctionEnum.DELETE.getCode(), GoodsFunctionEnum.DELETE.getName());
+            Utils.printlnFunction(GoodsFunctionEnum.INSERT.getCode(), GoodsFunctionEnum.INSERT.getName());
+            Utils.printlnFunction(GoodsFunctionEnum.QUERY_NAME.getCode(), GoodsFunctionEnum.QUERY_NAME.getName());
+            Utils.printlnFunction(GoodsFunctionEnum.QUERY_ALL.getCode(), GoodsFunctionEnum.QUERY_ALL.getName());
             GoodsContext.setCurrentFunction(GoodsFunctionEnum.valueOf(input.nextInt()));
             switch (GoodsContext.getCurrentFunction())
             {
@@ -134,9 +134,9 @@ public class GoodsServiceImpl implements GoodsService
         do
         {
             System.out.println("请选择折扣策略,当前为" + goodsContext.getDiscountStrategy());
-            Utils.printFunction("无折扣策略", 1);
-            Utils.printFunction("正常折扣策略", 2);
-            Utils.printFunction("退出策略选择", -1);
+            Utils.printlnFunction(1, "无折扣策略");
+            Utils.printlnFunction(2, "正常折扣策略");
+            Utils.printlnFunction(-1, "退出策略选择");
             code = input.nextInt();
             switch (code)
             {

@@ -1,5 +1,8 @@
 package com.shimmeringlight.dp.service.order;
 
+import com.shimmeringlight.dp.entity.OrderPo;
+import com.shimmeringlight.dp.entity.OrderVo;
+
 import java.util.Scanner;
 
 /**
@@ -7,6 +10,20 @@ import java.util.Scanner;
  */
 public interface OrderService
 {
+    /**
+     * vo转换为po
+     * @param vo vo
+     * @return po
+     */
+    OrderPo convertToPo(OrderVo vo);
+
+    /**
+     * po转换为vo
+     * @param po po
+     * @return vo
+     */
+    OrderVo convertToVo(OrderPo po);
+
     /**
      * 功能选择
      * @param input 键盘输入
