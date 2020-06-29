@@ -4,10 +4,7 @@ import com.shimmeringlight.dp.dao.GoodsListMapper;
 import com.shimmeringlight.dp.dao.GoodsMapper;
 import com.shimmeringlight.dp.dao.OrdersMapper;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
-import com.shimmeringlight.dp.entity.Goods;
-import com.shimmeringlight.dp.entity.GoodsList;
-import com.shimmeringlight.dp.entity.OrderPo;
-import com.shimmeringlight.dp.entity.OrderVo;
+import com.shimmeringlight.dp.entity.*;
 import com.shimmeringlight.dp.service.goods.GoodsService;
 import com.shimmeringlight.dp.service.goods.GoodsServiceImpl;
 import com.shimmeringlight.dp.service.goodslist.GoodsListService;
@@ -32,7 +29,7 @@ public class OrderServiceImpl implements OrderService
     @Override
     public OrderPo convertToPo(OrderVo vo)
     {
-        return new OrderPo(vo.getOrderId(),vo.getOrderPrice(),vo.getNum(),vo.getWeight());
+        return new OrderPo(vo.getOrderId(),vo.getOrderPrice(),vo.getNum(),vo.getWeight(),vo.getStatus());
     }
 
     @Override
@@ -42,6 +39,7 @@ public class OrderServiceImpl implements OrderService
         List<GoodsList> lists = goodsListMapper.findByOrderId(po.getOrderId());
         OrderVo vo = new OrderVo();
         vo.setGoodsLists(lists);
+        vo.setStatus(po.getStatus());
         int num = 0;
         int price = 0;
         int weight = 0;
@@ -160,6 +158,7 @@ public class OrderServiceImpl implements OrderService
         funcMap.put(1,"增加条目");
         funcMap.put(2,"删除条目");
         funcMap.put(3,"更新条目");
+        funcMap.put(4,"更新状态");
         funcMap.put(-1,"返回功能选择");
         Utils.printFunction(funcMap);
         int func = input.nextInt();
@@ -190,6 +189,12 @@ public class OrderServiceImpl implements OrderService
                 goodsList.setGoodsListId(goodsListId);
                 goodsList.setFinalPrice(goodsService.calcFinalPrice(goodsMapper.findById(goodsList.getGoodsId())));
                 goodsListMapper.updateByEntity(goodsList);
+                break;
+            case 4:
+                StatusEnum status = StatusEnum.getStatusFromInput(input);
+                orderPo.setStatus(status);
+                ordersMapper.updateByEntity(orderPo);
+                System.out.println("更新完成");
         }
     }
 

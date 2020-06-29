@@ -22,24 +22,11 @@ public enum OrderFunctionEnum
 
     public static OrderFunctionEnum valueOf(int code)
     {
-        switch (code)
+        OrderFunctionEnum[] values = OrderFunctionEnum.values();
+        for(OrderFunctionEnum value: values)
         {
-            case 0:
-                return SELECT;
-            case 1:
-                return PRINT;
-            case 2:
-                return UPDATE;
-            case 3:
-                return DELETE;
-            case 4:
-                return INSERT;
-            case 5:
-                return QUERY_FULL;
-            case 6:
-                return QUERY_ALL;
-            case -1:
-                return EXIT;
+            if(value.getCode() == code)
+                return value;
         }
         return null;
     }

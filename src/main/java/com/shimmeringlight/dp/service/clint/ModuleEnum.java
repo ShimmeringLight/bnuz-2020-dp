@@ -12,20 +12,18 @@ public enum ModuleEnum
 
     public static ModuleEnum valueOf(int val)
     {
-        switch (val)
+        ModuleEnum[] values = ModuleEnum.values();
+        for(ModuleEnum value: values)
         {
-            case -1:
-                return SELECT;
-            case 1:
-                return GOODS;
-            case 2:
-                return ORDERS;
-            case 3:
-                return USER;
-            case -2:
-                return EXIT;
+            if(val == value.getModule())
+                return value;
         }
         return null;
+    }
+
+    public int getModule()
+    {
+        return module;
     }
 
     @Override

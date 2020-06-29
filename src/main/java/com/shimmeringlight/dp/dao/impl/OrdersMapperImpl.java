@@ -2,6 +2,7 @@ package com.shimmeringlight.dp.dao.impl;
 
 import com.shimmeringlight.dp.dao.OrdersMapper;
 import com.shimmeringlight.dp.entity.OrderPo;
+import com.shimmeringlight.dp.entity.StatusEnum;
 import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
 import com.shimmeringlight.dp.utils.Utils;
@@ -41,6 +42,7 @@ public class OrdersMapperImpl implements OrdersMapper
                 orderPo.setOrderPrice(resultSet.getInt("orderPrice"));
                 orderPo.setNum(resultSet.getInt("num"));
                 orderPo.setWeight(resultSet.getInt("weight"));
+                orderPo.setStatus(StatusEnum.valueOf(resultSet.getString("status").charAt(0)));
                 orderPoList.add(orderPo);
                 count++;
             }
@@ -57,10 +59,12 @@ public class OrdersMapperImpl implements OrdersMapper
     @Login
     public void insertByEntity(OrderPo orderPo)
     {
-        String sql = "insert into Orders (orderPrice, num, weight) VALUES ("
+        String sql = "insert into Orders (orderPrice, num, weight, status) VALUES ("
                 + orderPo.getOrderPrice() + ","
                 + orderPo.getNum() + ","
-                + orderPo.getWeight() + ")";
+                + orderPo.getWeight() + ","
+                + orderPo.getStatus().getChr()
+                + ")";
         Utils.logSQL(sql);
         try
         {
@@ -93,7 +97,8 @@ public class OrdersMapperImpl implements OrdersMapper
         String sql = "update Orders set "
                 + "orderPrice = " + orderPo.getOrderPrice() + ","
                 + "num = " + orderPo.getNum() + ","
-                + "weight = " + orderPo.getWeight() + " "
+                + "weight = " + orderPo.getWeight() + ","
+                + "status = " + orderPo.getStatus().getChr() + " "
                 + "where orderId = " + orderPo.getOrderId();
         Utils.logSQL(sql);
         try
@@ -126,7 +131,8 @@ public class OrdersMapperImpl implements OrdersMapper
         String sql = "select * from Orders where "
                 + "orderPrice = " + orderPo.getOrderPrice() + " and "
                 + "num = " + orderPo.getNum() + " and "
-                + "weight = " + orderPo.getWeight();
+                + "weight = " + orderPo.getWeight() + " and"
+                + "status = " + orderPo.getStatus().getChr();
         Utils.logSQL(sql);
         try
         {

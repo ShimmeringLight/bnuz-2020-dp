@@ -25,24 +25,11 @@ public enum GoodsFunctionEnum
 
     public static GoodsFunctionEnum valueOf(int value)
     {
-        switch (value)
+        GoodsFunctionEnum[] values = GoodsFunctionEnum.values();
+        for(GoodsFunctionEnum g: values)
         {
-            case 0:
-                return SELECT;
-            case 1:
-                return SET_STRATEGY;
-            case 2:
-                return UPDATE;
-            case 3:
-                return DELETE;
-            case 4:
-                return INSERT;
-            case 5:
-                return QUERY_NAME;
-            case 6:
-                return QUERY_ALL;
-            case -1:
-                return EXIT;
+            if(g.getCode() == value)
+                return g;
         }
         return null;
     }

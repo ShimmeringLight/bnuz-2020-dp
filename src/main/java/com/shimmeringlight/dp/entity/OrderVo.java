@@ -13,6 +13,19 @@ public class OrderVo
     private int num;
     //总重量
     private int weight;
+    //订单状态
+    private StatusEnum status;
+
+    public StatusEnum getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status)
+    {
+        this.status = status;
+    }
+
     //订单商品列表
     //key商品id
     //value商品数量

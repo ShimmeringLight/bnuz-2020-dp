@@ -55,6 +55,7 @@ create table Orders
     orderPrice int,
     num        int,
     weight     int,
+    status     char(1),
     primary key (orderId)
 );
 

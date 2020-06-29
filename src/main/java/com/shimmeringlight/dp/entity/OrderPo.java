@@ -2,9 +2,7 @@ package com.shimmeringlight.dp.entity;
 
 import com.shimmeringlight.dp.service.goods.strategy.DiscountStrategy;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  * 订单实体类
@@ -19,20 +17,34 @@ public class OrderPo
     private int num;
     //总重量
     private int weight;
+    //订单状态
+    private StatusEnum status;
+
+    public StatusEnum getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status)
+    {
+        this.status = status;
+    }
 
     public OrderPo()
     {
         orderPrice = 0;
         num = 0;
         weight = 0;
+        status = null;
     }
 
-    public OrderPo(int orderId, int orderPrice, int num, int weight)
+    public OrderPo(int orderId, int orderPrice, int num, int weight, StatusEnum status)
     {
         this.orderId = orderId;
         this.orderPrice = orderPrice;
         this.num = num;
         this.weight = weight;
+        this.status = status;
     }
 
     public OrderPo(Map<Goods,Integer> goodsList, DiscountStrategy strategy)
