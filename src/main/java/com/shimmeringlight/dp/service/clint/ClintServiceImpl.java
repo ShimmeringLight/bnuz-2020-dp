@@ -4,6 +4,9 @@ import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
 import com.shimmeringlight.dp.service.goods.GoodsService;
 import com.shimmeringlight.dp.service.goods.GoodsServiceImpl;
+import com.shimmeringlight.dp.service.login.LoginRetention;
+import com.shimmeringlight.dp.service.login.LoginService;
+import com.shimmeringlight.dp.service.login.LoginServiceImpl;
 import com.shimmeringlight.dp.service.order.OrderService;
 import com.shimmeringlight.dp.service.order.OrderServiceImpl;
 
@@ -18,6 +21,8 @@ public class ClintServiceImpl implements ClintService
 
     OrderService orderService = OrderServiceImpl.getInstance();
 
+    LoginService loginService = LoginServiceImpl.getInstance();
+
     ModuleEnum currentModule = ModuleEnum.SELECT;
 
     Log log = LogFactory.build();
@@ -26,6 +31,14 @@ public class ClintServiceImpl implements ClintService
     public void startMain()
     {
         Scanner input = new Scanner(System.in);
+        do
+        {
+            System.out.println("请输入用户名");
+            String userName = input.next();
+            System.out.println("请输入密码");
+            String password = input.next();
+            loginService.login(userName,password);
+        }while (!LoginRetention.isLogin());
         this.startSelect(input);
     }
 
