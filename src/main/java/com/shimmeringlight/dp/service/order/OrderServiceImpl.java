@@ -260,4 +260,15 @@ public class OrderServiceImpl implements OrderService
     {
 
     }
+
+    //单例
+    private static class Instance
+    {
+        public static final OrderServiceImpl instance = new OrderServiceImpl();
+    }
+
+    public static OrderServiceImpl getInstance()
+    {
+        return OrderServiceImpl.Instance.instance;
+    }
 }

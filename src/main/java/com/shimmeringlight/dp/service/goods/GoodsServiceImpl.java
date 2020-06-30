@@ -3,12 +3,15 @@ package com.shimmeringlight.dp.service.goods;
 import com.shimmeringlight.dp.dao.GoodsMapper;
 import com.shimmeringlight.dp.dao.factory.DaoFactoryImpl;
 import com.shimmeringlight.dp.entity.Goods;
+import com.shimmeringlight.dp.service.goods.decorat.*;
 import com.shimmeringlight.dp.service.goods.strategy.GoodsContext;
 import com.shimmeringlight.dp.service.goods.strategy.NoDiscount;
 import com.shimmeringlight.dp.service.goods.strategy.PlainDiscount;
 import com.shimmeringlight.dp.utils.Utils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -72,6 +75,9 @@ public class GoodsServiceImpl implements GoodsService
                     break;
                 case QUERY_ALL:
                     this.queryAll();
+                    break;
+                case PRINT:
+                    this.startPrint(input);
                     break;
                 default:
                     System.out.println("请重新选择");
@@ -154,6 +160,32 @@ public class GoodsServiceImpl implements GoodsService
             }
         } while (code != -1);
 
+    }
+
+    @Override
+    public void startPrint(Scanner input)
+    {
+        int goodsId;
+        System.out.println("开始商品打印，请输入商品id");
+        goodsId = input.nextInt();
+        Goods goods = goodsMapper.findById(goodsId);
+        System.out.println("请输入订单打印部分，可多选");
+        Map<Integer,String> partMap = new HashMap<>();
+        partMap.put(1,"商品头");
+        partMap.put(2,"商品尾");
+        Utils.printFunction(partMap);
+        String func = input.next();
+        GoodsPrinter printer = new Printer();
+        if(func.contains("1"))
+        {
+            PrintDecorator headDecorator = new HeadPrintDecorator(printer);
+            headDecorator.print(goods);
+        }
+        if(func.contains("2"))
+        {
+            PrintDecorator afterDecorator = new AfterPrinter(printer);
+            afterDecorator.print(goods);
+        }
     }
 
     private static class Instance

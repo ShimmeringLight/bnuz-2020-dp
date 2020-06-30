@@ -4,6 +4,8 @@ import com.shimmeringlight.dp.log.Log;
 import com.shimmeringlight.dp.log.LogFactory;
 import com.shimmeringlight.dp.service.goods.GoodsService;
 import com.shimmeringlight.dp.service.goods.GoodsServiceImpl;
+import com.shimmeringlight.dp.service.order.OrderService;
+import com.shimmeringlight.dp.service.order.OrderServiceImpl;
 
 import java.util.Scanner;
 
@@ -13,6 +15,8 @@ import java.util.Scanner;
 public class ClintServiceImpl implements ClintService
 {
     GoodsService goodsService = GoodsServiceImpl.getInstance();
+
+    OrderService orderService = OrderServiceImpl.getInstance();
 
     ModuleEnum currentModule = ModuleEnum.SELECT;
 
@@ -67,12 +71,14 @@ public class ClintServiceImpl implements ClintService
     public void startGoods(Scanner input)
     {
         log.debug("进入商品模块");
+        goodsService.selectFunction(input);
     }
 
     @Override
     public void startOrders(Scanner input)
     {
         log.debug("进入订单模块");
+        orderService.startSelect(input);
     }
 
     @Override

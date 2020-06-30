@@ -61,4 +61,10 @@ public interface GoodsService
      * 设置折扣策略功能，默认正常折扣
      */
     void setStrategyFunction(Scanner input);
+
+    /**
+     * 打印商品功能
+     * @param input 键盘输入
+     */
+    void startPrint(Scanner input);
 }

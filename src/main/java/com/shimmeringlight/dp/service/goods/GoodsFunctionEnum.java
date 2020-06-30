@@ -12,6 +12,7 @@ public enum GoodsFunctionEnum
     INSERT(4, "增加商品"),
     QUERY_NAME(5, "根据名称查询"),
     QUERY_ALL(6, "查询全部"),
+    PRINT(7,"打印商品"),
     EXIT(-1, "返回模块选择");
     private int code;
 
